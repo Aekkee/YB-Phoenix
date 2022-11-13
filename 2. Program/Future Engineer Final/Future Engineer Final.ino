@@ -15,6 +15,7 @@ float MeanRGB;
 long RGBtimer;
 char line = 'W';
 int line_offset = 10;
+int line_count = 0;
 
 // PID
 float err, last_err, integral;
@@ -30,7 +31,7 @@ int USread;
 // #include "CytronMotorDriver.h"
 // CytronMD motor1(PWM_PWM, 2, 3);
 long motor1timer;
-float Currentspeed; 
+float Currentspeed;
 
 
 // Compass
@@ -136,43 +137,56 @@ void setup1() {
     CompassUpdate();
     UltraSonicUpdate();
     rainbow(10);
+    
   }
-  RGBtimer = millis();
+  RGBtimer = millis() - 500;
 }
 
 
 void loop() {
-  UltraSonicUpdate();
-  // analogWrite(2, 4095);
-  // analogWrite(3, 0);
-  // analogWrite(8, map(abs(Wrap((bearingPID - initial_deg), -180, 179)), 90, 0, 1500, 2800));
-
-  motor1(map(abs(Wrap((bearingPID - initial_deg), -180, 179)), 90, 0, 20, 100), 30);
+  while (line_count < 12 || millis() - RGBtimer < 1000) {
 
 
-  if (line == 'R' && (USread > 90 || millis() - RGBtimer > 0)) {
-    initial_deg = initial_deg + 90;
-    line_offset = -10;
-    line = 'W';
-    // Servo1(45);
-    Serial.println("REDD");
-  } else if (line == 'B' && (USread > 90 || millis() - RGBtimer > 0)) {
-    initial_deg = initial_deg - 90;
-    line_offset = 10;
-    line = 'W';
+    UltraSonicUpdate();
+    // analogWrite(2, 4095);
+    // analogWrite(3, 0);
+    // analogWrite(8, map(abs(Wrap((bearingPID - initial_deg), -180, 179)), 90, 0, 1500, 2800));
 
-    // Servo1(225);
-    Serial.println("BLUEE");
+    motor1(map(abs(Wrap((bearingPID - initial_deg), -180, 179)), 90, 0, 20, 80), 20);
+
+
+    if (line == 'R') {
+      initial_deg = initial_deg + 90;
+      line_offset = -10;
+      line = 'W';
+      // Servo1(45);
+      Serial.println("REDD");
+    } else if (line == 'B') {
+      initial_deg = initial_deg - 90;
+      line_offset = 10;
+      line = 'W';
+
+      // Servo1(225);
+      Serial.println("BLUEE");
+    }
+
+    // if (abs(Wrap((bearing - initial_deg), -180, 179)) > 25) {
+
+    //   Servo2(Wrap((bearingPID - initial_deg) * -1, -180, 179) * 0.3 + 135);
+    // } else {
+    Servo2(Wrap((Wrap(bearingPID - initial_deg, -180, 179) * mapf(abs(Wrap(bearingPID - initial_deg, -180, 179)), 0, 90, 0.25, 0.4) - line_offset * constrain(mapf(USread, 25, 60, -1, 1), -1, 0.6) * mapf(abs(Wrap(bearingPID - initial_deg, -180, 179)), 0, 90, 0.8, 0.5)) * -1, -180, 179) + 135);
+    // }
+
+    Servo1(servo_deg + Wrap((bearing - initial_deg), -180, 179));
   }
 
-  // if (abs(Wrap((bearing - initial_deg), -180, 179)) > 25) {
 
-  //   Servo2(Wrap((bearingPID - initial_deg) * -1, -180, 179) * 0.3 + 135);
-  // } else {
-  Servo2(Wrap((Wrap(bearingPID - initial_deg, -180, 179) * mapf(abs(Wrap(bearingPID - initial_deg, -180, 179)), 0, 90, 0.25, 0.4) - line_offset * constrain(mapf(USread, 20, 60, -1, 1), -1, 0.6) * mapf(abs(Wrap(bearingPID - initial_deg, -180, 179)), 0, 90, 0.8, 0.5)) * -1, -180, 179) + 135);
-  // }
 
-  Servo1(servo_deg + Wrap((bearing - initial_deg), -180, 179));
+  while (1) {
+    analogWrite(2, 4095);
+    analogWrite(3, 4095);
+    analogWrite(8, 4095);
+  }
 
   // Serial.println(map(abs(Wrap((bearingPID - initial_deg), -180, 179)), 180, 0, 500, 4095));
 }
@@ -281,6 +295,7 @@ void RGBUpdate(bool Line_read) {
     // servo_deg = 135;
     // Serial.println(MeanRGB / i);
     MeanRGB = 0;
+    line_count++;
     // i = 0;
   }
   // Serial.println(MeanRGB);
@@ -320,13 +335,13 @@ void motor1(int speed, int acceleration) {
       analogWrite(2, 4095);
       analogWrite(3, 0);
     } else {
-      digitalWrite(2, 0);
-      digitalWrite(3, 4095);
+      analogWrite(2, 0);
+      analogWrite(3, 4095);
     }
     analogWrite(8, map(abs(Currentspeed), 0, 100, 0, 4095));
     // Serial.print(speed);
     // Serial.print("\t");
     // Serial.println(Currentspeed);
-    motor1timer = millis();    
+    motor1timer = millis();
   }
 }
