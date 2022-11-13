@@ -14,7 +14,8 @@ ColorSensorTCS34725 colorSensor(COLOR_SDA_PIN, COLOR_SCL_PIN);
 float MeanRGB;
 long RGBtimer;
 char line = 'W';
-int line_offset = 10;
+char line_rem = 'W';
+int line_offset = -10;
 int line_count = 0;
 
 // PID
@@ -59,6 +60,17 @@ long LEDtimer;
 long firstPixelHue = 0;
 Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
 
+//Pixy Camera
+// #define UART
+#include <Pixy2UART.h>
+Pixy2UART pixy;
+long pixytimer;
+int loops = 0;
+float offset_deg = 0;
+int nearest_index;
+int nearest_value;
+
+
 
 /*-//-//-//-//-//-//-//-//-//- PROGRAM SETUP -//-//-//-//-//-//-//-//-//-*/
 
@@ -74,8 +86,8 @@ void setup() {
   pinMode(29, INPUT);
   myservo1.attach(15, 600, 2400);
   myservo2.attach(14, 600, 2400);
-  Servo1(75);
-  servo_deg = 75;
+  Servo1(225);
+  servo_deg = 225;
   Servo2(135);
   // delay(1500);
 
@@ -97,10 +109,11 @@ void setup() {
 */
 
 void setup1() {
+  delay(1000);
   strip.begin();
   strip.show();
   strip.setBrightness(30);
-  delay(1000);
+  // delay(1000);
   pinMode(26, INPUT);  // Set START button pin mode
   Wire1.setSDA(6);     // Set SDA pin for I2C communication
   Wire1.setSCL(7);     // Set SCL pin for I2C communication
@@ -132,19 +145,71 @@ void setup1() {
     while (true)
       ;
   }
+
+  Serial1.setRX(17);
+  Serial1.setTX(16);
+
+  Serial.print("Starting...\n");
+  // Serail1
+  pixy.init();
+
   while (analogRead(26) != 1023) {
     RGBUpdate(false);
     CompassUpdate();
     UltraSonicUpdate();
     rainbow(10);
-    
   }
-  RGBtimer = millis() - 500;
+  RGBtimer = millis() - 1000;
 }
 
 
 void loop() {
-  while (line_count < 12 || millis() - RGBtimer < 1000) {
+
+  while (line_count < 12 || millis() - RGBtimer < 2000) {
+    pixy.ccc.getBlocks();
+    if (pixy.ccc.numBlocks != 0) {
+      nearest_index = 0;
+      nearest_value = pixy.ccc.blocks[nearest_index].m_height;
+
+      for (int i = 0; i < pixy.ccc.numBlocks; i++) {
+        if (pixy.ccc.blocks[i].m_height > nearest_value) {
+          nearest_index = i;
+          nearest_value = pixy.ccc.blocks[i].m_height;
+        }
+        // loops = loops + 1;
+        // Serial.print("[ ");
+        // Serial.print(1000 / (millis() - timer1));
+        // Serial.print(" fps ]");
+        // Serial.print("  block ");
+        // Serial.print(i);
+        // Serial.print(": ");
+        // Serial.print(1000 * 2 / pixy.ccc.blocks[i].m_height);
+        // Serial.print("\t");
+        // Serial.print(1000 * 2 / pixy.ccc.blocks[i].m_height * tan(float(map(pixy.ccc.blocks[i].m_x, 0, 316, -30, 30)) / 180 * PI));
+        // Serial.print("\t");
+      }
+      if (pixy.ccc.blocks[nearest_index].m_signature == 1) {
+        servo_deg = 225;
+        line_offset = -10;
+        // Serial.println(float(atan2(1000 * 2 / pixy.ccc.blocks[nearest_index].m_height * tan(float(map(pixy.ccc.blocks[nearest_index].m_x, 0, 316, -30, 30) + Wrap(bearingPID - initial_deg, -180, 179)) / 180 * PI), 1000 * 2 / pixy.ccc.blocks[nearest_index].m_height)) * 180 / PI);
+        Blocks((float(atan2(1000 * 2 / pixy.ccc.blocks[nearest_index].m_height * tan(float(map(pixy.ccc.blocks[nearest_index].m_x, 0, 316, -30, 30) + Wrap(bearingPID - initial_deg, -180, 179)) / 180 * PI) - 12, 1000 * 2 / pixy.ccc.blocks[nearest_index].m_height)) * 180 / PI), 50);
+        if (offset_deg > 0) {
+          Blocks(0, 50);
+        }
+      } else {
+        servo_deg = 35;
+        line_offset = 10;
+        // Serial.println(float(atan2(1000 * 2 / pixy.ccc.blocks[nearest_index].m_height * tan(float(map(pixy.ccc.blocks[nearest_index].m_x, 0, 316, -30, 30) + Wrap(bearingPID - initial_deg, -180, 179)) / 180 * PI), 1000 * 2 / pixy.ccc.blocks[nearest_index].m_height)) * 180 / PI);
+        // offset_deg = *0.25 + offset_deg;
+        Blocks((float(atan2(1000 * 2 / pixy.ccc.blocks[nearest_index].m_height * tan(float(map(pixy.ccc.blocks[nearest_index].m_x, 0, 316, -30, 30) + Wrap(bearingPID - initial_deg, -180, 179)) / 180 * PI) + 12, 1000 * 2 / pixy.ccc.blocks[nearest_index].m_height)) * 180 / PI), 50);
+        if (offset_deg < 0) {
+          Blocks(0, 50);
+        }
+      }
+
+    } else {
+      Blocks(0, 50);
+    }
 
 
     UltraSonicUpdate();
@@ -152,30 +217,26 @@ void loop() {
     // analogWrite(3, 0);
     // analogWrite(8, map(abs(Wrap((bearingPID - initial_deg), -180, 179)), 90, 0, 1500, 2800));
 
-    motor1(map(abs(Wrap((bearingPID - initial_deg), -180, 179)), 90, 0, 20, 80), 20);
+
+    motor1(constrain(map(abs(Wrap((bearingPID - initial_deg + offset_deg), -180, 179)), 25, 0, 10, 15), 10, 15), 20);
 
 
     if (line == 'R') {
       initial_deg = initial_deg + 90;
-      line_offset = -10;
+      line_offset = 10;
       line = 'W';
+      line_rem = 'R';
       // Servo1(45);
       Serial.println("REDD");
     } else if (line == 'B') {
       initial_deg = initial_deg - 90;
-      line_offset = 10;
+      line_offset = -10;
       line = 'W';
-
-      // Servo1(225);
-      Serial.println("BLUEE");
+      line_rem = 'B';
     }
 
-    // if (abs(Wrap((bearing - initial_deg), -180, 179)) > 25) {
 
-    //   Servo2(Wrap((bearingPID - initial_deg) * -1, -180, 179) * 0.3 + 135);
-    // } else {
-    Servo2(Wrap((Wrap(bearingPID - initial_deg, -180, 179) * mapf(abs(Wrap(bearingPID - initial_deg, -180, 179)), 0, 90, 0.25, 0.4) - line_offset * constrain(mapf(USread, 25, 60, -1, 1), -1, 0.6) * mapf(abs(Wrap(bearingPID - initial_deg, -180, 179)), 0, 90, 0.8, 0.5)) * -1, -180, 179) + 135);
-    // }
+    Servo2(Wrap((Wrap(bearingPID - initial_deg, -180, 179) * mapf(abs(Wrap(bearingPID - initial_deg, -180, 179)), 0, 90, 0.6, 0.7) - line_offset * constrain(mapf(USread, 20, 50, -1, 1), -1, 0.4) * mapf(abs(Wrap(bearingPID - initial_deg, -180, 179)), 0, 90, 0.8, 0.5)) * -1, -180, 179) + offset_deg * constrain(mapf(USread, 15, 40, 0, 1), -0.1, 1) + 135);
 
     Servo1(servo_deg + Wrap((bearing - initial_deg), -180, 179));
   }
@@ -189,6 +250,14 @@ void loop() {
   }
 
   // Serial.println(map(abs(Wrap((bearingPID - initial_deg), -180, 179)), 180, 0, 500, 4095));
+}
+
+void Blocks(float input, long Blocktimer) {
+  if (millis() - pixytimer > Blocktimer) {
+    offset_deg = constrain(offset_deg, -65, 65);
+    offset_deg = (input - offset_deg) * 0.15 + offset_deg;
+    pixytimer = millis();
+  }
 }
 
 void loop1() {
@@ -213,7 +282,8 @@ void Servo2(int theta) {
 
 void UltraSonicUpdate() {
 
-  USread = map(analogRead(29), 0, 1023, 0, 500) * 0.866025;
+  USread = map(analogRead(29), 0, 1023, 0, 500);
+  // Serial.println(USread);
 }
 
 void CompassUpdate() {
@@ -267,11 +337,11 @@ void RGBUpdate(bool Line_read) {
 
   // Serial.println(v.c);
 
-  if (v.c < 1500 && (millis() - RGBtimer) > 1000 && line == 'W' && Line_read) {
-    if (red > blue) {
+  if (v.c < 1500 && (millis() - RGBtimer) > 2500 && line == 'W' && Line_read) {
+    if (red > blue && (line_rem == 'W' || line_rem == 'R')) {
       // Serial.println("Red: ");
       MeanRGB = (MeanRGB + 1);
-    } else {
+    } else if (red <= blue  && (line_rem == 'W' || line_rem == 'B')){
       // Serial.println("Blue: ");
       MeanRGB = (MeanRGB - 1);
 
@@ -282,13 +352,13 @@ void RGBUpdate(bool Line_read) {
   } else if (MeanRGB != 0) {
     if (MeanRGB > 0) {
       Serial.println("RED");
-      servo_deg = 195;
+      servo_deg = 35;
       line = 'R';
 
 
     } else {
       Serial.println("BLUE");
-      servo_deg = 75;
+      servo_deg = 225;
       line = 'B';
     }
     RGBtimer = millis();
