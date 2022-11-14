@@ -236,7 +236,7 @@ void loop() {
     }
 
 
-    Servo2(Wrap((Wrap(bearingPID - initial_deg, -180, 179) * mapf(abs(Wrap(bearingPID - initial_deg, -180, 179)), 0, 90, 0.6, 0.7) - line_offset * constrain(mapf(USread, 20, 50, -1, 1), -1, 0.4) * mapf(abs(Wrap(bearingPID - initial_deg, -180, 179)), 0, 90, 0.8, 0.5)) * -1, -180, 179) + offset_deg * constrain(mapf(USread, 15, 40, 0, 1), -0.1, 1) + 135);
+    Servo2(Wrap((Wrap(bearingPID - initial_deg, -180, 179) * mapf(abs(Wrap(bearingPID - initial_deg, -180, 179)), 0, 90, 0.6, 0.7) - line_offset * constrain(mapf(USread, 20, 50, -1, 1), -0.8, 0.2) * mapf(abs(Wrap(bearingPID - initial_deg, -180, 179)), 0, 90, 0.8, 0.5)) * -1, -180, 179) + offset_deg * constrain(mapf(USread, 15, 40, 0, 1), -0.1, 1) + 135);
 
     Servo1(servo_deg + Wrap((bearing - initial_deg), -180, 179));
   }
