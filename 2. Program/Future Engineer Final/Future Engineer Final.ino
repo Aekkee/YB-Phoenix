@@ -22,6 +22,9 @@ int line_count = 0;
 float err, last_err, integral;
 long PIDtimer;
 
+float err1, last_err1, integral1;
+long PIDtimer1;
+
 // Ultrasonic Sensor
 #include <NewPing.h>
 NewPing sonar(29, 28, 100);  //initialisation class HCSR04 (trig pin , echo pin, max distance
@@ -86,8 +89,8 @@ void setup() {
   pinMode(29, INPUT);
   myservo1.attach(15, 600, 2400);
   myservo2.attach(14, 600, 2400);
-  Servo1(225);
-  servo_deg = 225;
+  Servo1(215);
+  servo_deg = 215;
   Servo2(135);
   // delay(1500);
 
@@ -159,7 +162,7 @@ void setup1() {
     UltraSonicUpdate();
     rainbow(10);
   }
-  RGBtimer = millis() - 1000;
+  RGBtimer = millis() - 500;
 }
 
 
@@ -192,26 +195,26 @@ void loop() {
         // Serial.print("\t");
       }
       if (pixy.ccc.blocks[nearest_index].m_signature == 1) {
-        servo_deg = 225;
+        servo_deg = 215;
         line_offset = -10;
         // Serial.println(float(atan2(1000 * 2 / pixy.ccc.blocks[nearest_index].m_height * tan(float(map(pixy.ccc.blocks[nearest_index].m_x, 0, 316, -30, 30) + Wrap(bearingPID - initial_deg, -180, 179)) / 180 * PI), 1000 * 2 / pixy.ccc.blocks[nearest_index].m_height)) * 180 / PI);
-        Blocks((float(atan2(1000 * 2 / pixy.ccc.blocks[nearest_index].m_height * tan(float(map(pixy.ccc.blocks[nearest_index].m_x, 0, 316, -30, 30) + Wrap(bearingPID - initial_deg, -180, 179)) / 180 * PI) - 12, 1000 * 2 / pixy.ccc.blocks[nearest_index].m_height)) * 180 / PI), 25);
+        Blocks((float(atan2(1000 * 2 / pixy.ccc.blocks[nearest_index].m_height * tan(float(map(pixy.ccc.blocks[nearest_index].m_x, 0, 316, -30, 30) + Wrap(bearingPID - initial_deg, -180, 179)) / 180 * PI) - 20, 1000 * 2 / pixy.ccc.blocks[nearest_index].m_height - 2)) * 180 / PI), 15);
         if (offset_deg > 0) {
-          Blocks(0, 50);
+          Blocks(0, 35);
         }
       } else {
-        servo_deg = 35;
+        servo_deg = 55;
         line_offset = 10;
         // Serial.println(float(atan2(1000 * 2 / pixy.ccc.blocks[nearest_index].m_height * tan(float(map(pixy.ccc.blocks[nearest_index].m_x, 0, 316, -30, 30) + Wrap(bearingPID - initial_deg, -180, 179)) / 180 * PI), 1000 * 2 / pixy.ccc.blocks[nearest_index].m_height)) * 180 / PI);
         // offset_deg = *0.25 + offset_deg;
-        Blocks((float(atan2(1000 * 2 / pixy.ccc.blocks[nearest_index].m_height * tan(float(map(pixy.ccc.blocks[nearest_index].m_x, 0, 316, -30, 30) + Wrap(bearingPID - initial_deg, -180, 179)) / 180 * PI) + 12, 1000 * 2 / pixy.ccc.blocks[nearest_index].m_height)) * 180 / PI), 25);
+        Blocks((float(atan2(1000 * 2 / pixy.ccc.blocks[nearest_index].m_height * tan(float(map(pixy.ccc.blocks[nearest_index].m_x, 0, 316, -30, 30) + Wrap(bearingPID - initial_deg, -180, 179)) / 180 * PI) + 20, 1000 * 2 / pixy.ccc.blocks[nearest_index].m_height - 2)) * 180 / PI), 15);
         if (offset_deg < 0) {
-          Blocks(0, 50);
+          Blocks(0, 35);
         }
       }
 
     } else {
-      Blocks(0, 50);
+      Blocks(0, 35);
     }
 
 
@@ -221,25 +224,27 @@ void loop() {
     // analogWrite(8, map(abs(Wrap((bearingPID - initial_deg), -180, 179)), 90, 0, 1500, 2800));
 
 
-    motor1(constrain(map(abs(Wrap((bearingPID - initial_deg + offset_deg), -180, 179)), 25, 0, 10, 15), 10, 15), 20);
+    motor1(constrain(map(abs(Wrap((bearingPID - initial_deg + offset_deg), -180, 179)), 25, 0, 10, 25), 10, 25), 40);
 
 
-    if (line == 'R') {
+    if (line == 'R' && pixy.ccc.numBlocks == 0) {
       initial_deg = initial_deg + 90;
       line_offset = 10;
       line = 'W';
       line_rem = 'R';
+      servo_deg = 55;
       // Servo1(45);
       Serial.println("REDD");
-    } else if (line == 'B') {
+    } else if (line == 'B' && pixy.ccc.numBlocks == 0) {
       initial_deg = initial_deg - 90;
       line_offset = -10;
       line = 'W';
       line_rem = 'B';
+      servo_deg = 215;
     }
 
 
-    Servo2(Wrap((Wrap(bearingPID - initial_deg, -180, 179) * mapf(abs(Wrap(bearingPID - initial_deg, -180, 179)), 0, 90, 0.6, 0.7) - line_offset * constrain(mapf(USread, 20, 50, -1, 1), -0.8, 0.2) * mapf(abs(Wrap(bearingPID - initial_deg, -180, 179)), 0, 90, 0.8, 0.5)) * -1, -180, 179) + offset_deg * constrain(mapf(USread, 15, 40, 0, 1), -0.1, 1) + 135);
+    Servo2(Wrap((Wrap(bearingPID - initial_deg, -180, 179) * mapf(abs(Wrap(bearingPID - initial_deg + offset_deg * constrain(mapf(USread, 20, 40, 0, 1), 0, 1), -180, 179)), 0, 90, 0.3, 1.4) - line_offset * constrain(mapf(USread, 20, 65, -1, 1), -1, 0.2) * mapf(abs(Wrap(bearingPID - initial_deg, -180, 179)), 0, 90, 0.8, 0.5)) * -1 * mapf(abs(Currentspeed), 10, 30, 1, 0.3) + offset_deg * constrain(mapf(USread, 20, 40, 0, 1), 0, 1), -180, 179)  + 135);
 
     Servo1(servo_deg + Wrap((bearing - initial_deg), -180, 179));
   }
@@ -287,8 +292,18 @@ void Servo2(int theta) {
 
 void UltraSonicUpdate() {
 
-  USread = map(analogRead(29), 0, 1023, 0, 500);
+  USread = (map(analogRead(29), 0, 1023, 0, 500) - USread) * 0.2 + USread;
   // Serial.println(USread);
+}
+
+float PID1(float input, float kp, float ki, float kd) {
+  if (millis() - PIDtimer1 > 15) {
+    err1 = input * kp + integral1 * ki + (input - last_err1) * kd;
+    integral1 = integral1 + err1;
+    last_err1 = input;
+    PIDtimer1 = millis();
+  }
+  return err1;
 }
 
 void CompassUpdate() {
@@ -320,6 +335,7 @@ float PID(float input, float kp, float ki, float kd) {
   return err;
 }
 
+
 // motor(1, PID(analogRead(5), 0.5, 0, 0.2));
 
 float Wrap(float a, float min, float max) {  // Loop values in a certain range
@@ -342,11 +358,12 @@ void RGBUpdate(bool Line_read) {
 
   // Serial.println(v.c);
 
-  if (v.c < 1500 && (millis() - RGBtimer) > 2500 && line == 'W' && Line_read) {
+  if (v.c < 1500 && (millis() - RGBtimer) > 1500 && line == 'W' && Line_read) {
     if (red > blue && (line_rem == 'W' || line_rem == 'R')) {
       // Serial.println("Red: ");
       MeanRGB = (MeanRGB + 1);
-    } else if (red <= blue  && (line_rem == 'W' || line_rem == 'B')){
+    }
+    if (red <= blue && (line_rem == 'W' || line_rem == 'B')) {
       // Serial.println("Blue: ");
       MeanRGB = (MeanRGB - 1);
 
@@ -357,13 +374,12 @@ void RGBUpdate(bool Line_read) {
   } else if (MeanRGB != 0) {
     if (MeanRGB > 0) {
       Serial.println("RED");
-      servo_deg = 35;
+
       line = 'R';
 
 
     } else {
       Serial.println("BLUE");
-      servo_deg = 225;
       line = 'B';
     }
     RGBtimer = millis();
