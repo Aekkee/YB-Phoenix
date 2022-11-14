@@ -163,6 +163,9 @@ void setup1() {
 }
 
 
+
+
+
 void loop() {
 
   while (line_count < 12 || millis() - RGBtimer < 2000) {
@@ -192,7 +195,7 @@ void loop() {
         servo_deg = 225;
         line_offset = -10;
         // Serial.println(float(atan2(1000 * 2 / pixy.ccc.blocks[nearest_index].m_height * tan(float(map(pixy.ccc.blocks[nearest_index].m_x, 0, 316, -30, 30) + Wrap(bearingPID - initial_deg, -180, 179)) / 180 * PI), 1000 * 2 / pixy.ccc.blocks[nearest_index].m_height)) * 180 / PI);
-        Blocks((float(atan2(1000 * 2 / pixy.ccc.blocks[nearest_index].m_height * tan(float(map(pixy.ccc.blocks[nearest_index].m_x, 0, 316, -30, 30) + Wrap(bearingPID - initial_deg, -180, 179)) / 180 * PI) - 12, 1000 * 2 / pixy.ccc.blocks[nearest_index].m_height)) * 180 / PI), 50);
+        Blocks((float(atan2(1000 * 2 / pixy.ccc.blocks[nearest_index].m_height * tan(float(map(pixy.ccc.blocks[nearest_index].m_x, 0, 316, -30, 30) + Wrap(bearingPID - initial_deg, -180, 179)) / 180 * PI) - 12, 1000 * 2 / pixy.ccc.blocks[nearest_index].m_height)) * 180 / PI), 25);
         if (offset_deg > 0) {
           Blocks(0, 50);
         }
@@ -201,7 +204,7 @@ void loop() {
         line_offset = 10;
         // Serial.println(float(atan2(1000 * 2 / pixy.ccc.blocks[nearest_index].m_height * tan(float(map(pixy.ccc.blocks[nearest_index].m_x, 0, 316, -30, 30) + Wrap(bearingPID - initial_deg, -180, 179)) / 180 * PI), 1000 * 2 / pixy.ccc.blocks[nearest_index].m_height)) * 180 / PI);
         // offset_deg = *0.25 + offset_deg;
-        Blocks((float(atan2(1000 * 2 / pixy.ccc.blocks[nearest_index].m_height * tan(float(map(pixy.ccc.blocks[nearest_index].m_x, 0, 316, -30, 30) + Wrap(bearingPID - initial_deg, -180, 179)) / 180 * PI) + 12, 1000 * 2 / pixy.ccc.blocks[nearest_index].m_height)) * 180 / PI), 50);
+        Blocks((float(atan2(1000 * 2 / pixy.ccc.blocks[nearest_index].m_height * tan(float(map(pixy.ccc.blocks[nearest_index].m_x, 0, 316, -30, 30) + Wrap(bearingPID - initial_deg, -180, 179)) / 180 * PI) + 12, 1000 * 2 / pixy.ccc.blocks[nearest_index].m_height)) * 180 / PI), 25);
         if (offset_deg < 0) {
           Blocks(0, 50);
         }
@@ -252,20 +255,22 @@ void loop() {
   // Serial.println(map(abs(Wrap((bearingPID - initial_deg), -180, 179)), 180, 0, 500, 4095));
 }
 
-void Blocks(float input, long Blocktimer) {
-  if (millis() - pixytimer > Blocktimer) {
-    offset_deg = constrain(offset_deg, -65, 65);
-    offset_deg = (input - offset_deg) * 0.15 + offset_deg;
-    pixytimer = millis();
-  }
-}
-
 void loop1() {
 
   CompassUpdate();
   RGBUpdate(true);
 
   rainbow(10);
+}
+
+
+
+void Blocks(float input, long Blocktimer) {
+  if (millis() - pixytimer > Blocktimer) {
+    offset_deg = constrain(offset_deg, -65, 65);
+    offset_deg = (input - offset_deg) * 0.15 + offset_deg;
+    pixytimer = millis();
+  }
 }
 
 void Servo1(int theta) {
@@ -306,7 +311,7 @@ void CompassUpdate() {
 }
 
 float PID(float input, float kp, float ki, float kd) {
-  if (millis() - PIDtimer > 1) {
+  if (millis() - PIDtimer > 15) {
     err = input * kp + integral * ki + (input - last_err) * kd;
     integral = integral + err;
     last_err = input;
