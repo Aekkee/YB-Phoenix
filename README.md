@@ -1,30 +1,66 @@
-# WRO Future Engineer EV3 Program [Pheonix]
-### _By [Yothinburana School Robot Club]_
-
-[![N|Solid](https://ybrobot.club/image/YB%20Robot%20logo.png)](https://nodesource.com/products/nsolid)
-
-## Youtube Links: 
-Currently Unavaiable 
+# The Ultimate Guide to WRO Future Engineer 2022 [YB-Pheonix] ✨
 
 
+![](https://lh3.googleusercontent.com/u/0/drive-viewer/AJc5JmS-gvzix8rqHiP9ptq7tHeZygsObiNOmIOgPZ77TDPFEsBTKvNW-LatH-ngLn_0nhACZ-FHElf1pMwIivX24kCyNMjfTw=w1920-h929)
+
+
+<p align="center">
+  <img src="https://ybrobot.club/image/YB%20Robot%20logo.png" width="200"/>
+</p>
+<p align="center">
+<b>By Yothinburana School Robot Club</b>
+</p>
+
+
+## Our works (Youtube Links): 
+Qualified round: https://youtu.be/Iuq2aRa-G8A
+
+Final round: https://youtu.be/I5dHPB5TrM8
 
 
 
-## This Github repository contains:
 
-- Our robot design
+
+### This Github repository contains:
+
+- Design process
+- Crutial robot components
 - In-depth program explaination
 - Other links and references
 
-## **Our Robot Design** ✨
+# **Design process** ✨
 ### **Robot Hardware** 💻
 
-- **Motor** - **Power Functions L-Motor (88003)** for **moving** our robot
-- **2 Servo** - **KSERVO-270** one for **steering** our robot and another for **rotating ultrasonic sensor**
-- **Compass or Gyro** - We use **CMPS-03** compass
-- **Camera** - We use **Pixy 2.1** for our robot because of its functionality along with the existing pre-made blocks by the developers
+For WRO Future Engineer, it is mandatory that the robot uses one driving motor and one steering 
+actuator of any type, and it is highly reccommended that your robot also have **a camera.**
+
+## **Components of our robot:**
+
+- **Driving Motor** ( Power Functions L-Motor )
+
+![](https://www.lego.com/cdn/cs/set/assets/blt3289051a0e80fa54/88003.jpg?fit=bounds&format=jpg&quality=80&width=200&height=200&dpr=1)
+
+
+
+- **Ultrasonic Sensor** ( SEN0307 ) to measure the distance between the robot and the walls
+
+<img src="https://media.digikey.com/Photos/DFRobot/SEN0307.jpg" width="200"/>
+
+- **Servo** ( GEEKSERVO-270 ) one for **steering** our robot and another for rotating **the ultrasonic sensor**
+
+<img src="https://cdn.shopify.com/s/files/1/0174/1800/products/Geekservo_1of3_37e262f7-5470-4184-8990-40ef2955fc43.jpg?v=1593189003"  width="200"/>
+
+- **Compass or Gyro** - We use **CMPS-03** compass to determine the direction of our robot.
+
+<img src="https://inex.co.th/home/wp-content/uploads/2020/07/cmps03.jpg"  width="200"/>
+
+- **Camera** - We use **Pixy 2.1** for our robot because of its functionality along with the existing pre-made library by the developers
+
+<img src="https://www.zagrosrobotics.com/images/pixy2_3.jpg"  width="200"/>
+
 - **Maker Nano RP2040** - The brain for our robot
-- **HC-SR04** - An ultrasonic sensor used to measure the distance between the robot and walls  
+
+<img src="https://static.cytron.io/image/cache/catalog/products/MAKER-NANO-RP2040/maker-nano-rp2040-top1-800x800.png"  width="200"/>
 
   
 ![](https://lh3.googleusercontent.com/fife/AAbDypBMpb49LbKQ5uKGLfBDmphj8Q8arFVbUlOLNF8VVuXZUzkWvl3eadt5nIXetApAGM7xuwYlJYdm-KfruJEWDW08ieDruFHPaADXrP7M5XFcIfTFgCtY1fjK248FAwB_7itTqeUqzz8pINb41MQSfPzSzkifoEEMkDSyi1I-xJGw0YoBDbfG9zFeddrwtirY0IhSuuieEyrTlboi465iIsCqC__VBJN0-RV1PZkTUowbddHRlyaFzzxbg7O-Jov3FQW7jEgIFs0O2N1yQPx4CO8iDaT0TOcZ1_F7_eemipeXO4S4E6m0oJfD1PPAM21phtAkt1eKt8yExGOCzG3ldnAfriJ87OFrO_T0MO6mjr4OHHut8QX6QlA9YFfd1lUWe9POO6wRtRw-sgNifQiTRhEBlmrgXWLpPbZ0hRhcZYgA7tPZLdf0NT4UTS3-fbQSNGOIUq_ymm8Gx5ijanCEv4of1LiZajwnGiM-FbypDGq1SEkXtfCRteScp8EkKMZRXxhc3aLF2WPfy5UFPwGRDMAdBydtPxS6vD59GdavwcT2wM0_KaMOVXi_bt4DuZG5uf1BWUjaZsJMuJi8ep2sVsNUydBfVH7GA_FGagEzsXjmVWXOPzN4mLbx8haLA8274SpNiXhLMwLUam78VUcSefPEwddz6qgcSfW9c38OUQM03DozOGG3lE8nlZVFuu34VbXgZ8JWC1oPFVYxpYdMX1uQuENEolRZLeBf9sLs4i6UjiRAc-Btg6yNIvgf6CE30h-MIxXZP_CzLSxrODLrGQ3JfhYhH6h9DbrDEqD1pzlYd6HwN8QLn2BRTaJ3SNkk-Tw5X4YlSjZ-BdXg5h5t8j5lQq5Bku3wTZZ7ko15zrIhn_KO2Khng5n6a3ZsXnzQ6rLfF4_KyWNc7id1gsK8KbAWzRpw2AFXCg7J0mUvOmT2wbMUgJLRstg56BeaUlR1xZEQj-dMW8avdAiY0MJnnNpAz7QgXOLF-1UgCnmjKFx5rBme2_4KOm02dMK3lPYj1iV_REC5tAvsLiW4PKRkK6pgRKA_UWmDZiGZTorhgJcVrHkbaeyVv7oI31QaOPY4ULHsYju2wQRvFyWVeWqs5aMI0TRtCV72LUWD1kFNwv89BkGQWG-RRzy5oaxuqUjjrEll-fXJ9713vTQudQbFeSJgInNSrL6URnIIbswHI6UHWtb6ngPBqpmc_I5vtKsSB0Nz8LublM7z5L1st0ipVBGiEdzOLmtNY2P5TjpzVuQp1BeVMTFz9hoh4Mw7k2N9WQ6MN5EnKXEihFJDayxoqXcQYlAfnT-nycc0X8_VMKgcp_BbtZDKjNSZLS-3P9kW6iJQZ-svLY-Kgk1fj6WakgY1gD_dJBEikCEsC6Xg3xRZ0m75TbM-XgiBCYJun125R1O8SiooYNDEDzBQkEclHLUtWslDrk6fyHvGTah7XUi6VBy-ZvxaCCGKSGZ5y7_hiDPAFMNbYElfjDyPHmzphBHIXzpD17WWDNppPShQ0lq32baZH7wJpz7RYXy8GUUJY3-pWqFe1nv2C6-V-6pPQYzPuNusvADoTesBf1jDZtpq0cXsnKuOVTBUcc7a3pai9Sk5pePf14ab34IXVvzUipNU9P8xd653gCYYeh9qnW9DJgX8KiSAKvAuFn17jcAXdeDG=w1920-h929)  
