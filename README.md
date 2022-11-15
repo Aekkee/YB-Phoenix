@@ -10,7 +10,7 @@
 <p align="center">
 <b>By Yothinburana School Robot Club</b>
 </p>
-
+<br><br><br><br>
 
 ## Our works (Youtube Links): 
 Qualified round: https://youtu.be/Iuq2aRa-G8A
@@ -18,7 +18,7 @@ Qualified round: https://youtu.be/Iuq2aRa-G8A
 Final round: https://youtu.be/I5dHPB5TrM8
 
 
-
+<br>
 
 
 ### This Github repository contains:
@@ -28,27 +28,52 @@ Final round: https://youtu.be/I5dHPB5TrM8
 - In-depth program explaination
 - Other links and references
 
-# **Design process** ✨
-### **Robot Hardware** 💻
+<br><br><br><br>
+
+# **Part 1 : Design process** ✨
+
+<br>
+
+### **The Robot** 💻
+
+<br>
+
+Designing a robot is not easy. You will need to plan ahead about what you will use in your robot.
 
 For WRO Future Engineer, it is mandatory that the robot uses one driving motor and one steering 
-actuator of any type, and it is highly reccommended that your robot also have **a camera.**
+actuator of any type, and it is highly reccommended that your robot also have **a camera.** 📸
 
-## **Components of our robot:**
+The robot’s dimensions **must not exceed 300x200 mm and 300 mm in height.**
+
+The weight of the robot **must not exceed 1.5 kilograms.** ⚖️
+
+<br>
+
+## **Choosing components of our robot:**
+
+Remember that the best of the components is just a small part of your success. It will depend on how you use such components to your advantages.
+
+<br>
 
 - **Driving Motor** ( Power Functions L-Motor )
 
-![](https://www.lego.com/cdn/cs/set/assets/blt3289051a0e80fa54/88003.jpg?fit=bounds&format=jpg&quality=80&width=200&height=200&dpr=1)
+![](https://www.lego.com/cdn/cs/set/assets/blt3289051a0e80fa54/88003.jpg?fit=bounds&format=jpg&quality=80&width=500&height=500&dpr=1)
 
+A simple and fast motor made by **LEGO**. There are many alternatives when it comes to motors for a robot, but we chose this motor because of the ease of connecting this motor to the frame of our robot. We need to make sure that our robot does not break apart while running.
 
+<br>
 
 - **Ultrasonic Sensor** ( SEN0307 ) to measure the distance between the robot and the walls
 
-<img src="https://media.digikey.com/Photos/DFRobot/SEN0307.jpg" width="200"/>
+<img src="https://media.digikey.com/Photos/DFRobot/SEN0307.jpg" width="400"/>
+
+An incredible sensor that comes with **built-in temperature compensation**, which can greatly reduce measurement error caused by over high/low temperature. It adopts **analog voltage output**, and provides accurate distance measurement within **2-500cm** with 1cm resolution and **±1% accuracy.**
+
+<br>
 
 - **Servo** ( GEEKSERVO-270 ) one for **steering** our robot and another for rotating **the ultrasonic sensor**
 
-<img src="https://cdn.shopify.com/s/files/1/0174/1800/products/Geekservo_1of3_37e262f7-5470-4184-8990-40ef2955fc43.jpg?v=1593189003"  width="200"/>
+<img src="https://cdn.shopify.com/s/files/1/0174/1800/products/Geekservo_1of3_37e262f7-5470-4184-8990-40ef2955fc43.jpg?v=1593189003"  width="400"/>
 
 - **Compass or Gyro** - We use **CMPS-03** compass to determine the direction of our robot.
 
@@ -58,11 +83,16 @@ actuator of any type, and it is highly reccommended that your robot also have **
 
 <img src="https://www.zagrosrobotics.com/images/pixy2_3.jpg"  width="200"/>
 
-- **Maker Nano RP2040** - The brain for our robot
+- **Microcontroller Board** - **Maker Nano RP2040**, the brain for our robot
 
-<img src="https://static.cytron.io/image/cache/catalog/products/MAKER-NANO-RP2040/maker-nano-rp2040-top1-800x800.png"  width="200"/>
+<img src="https://circuitpython.org/assets/images/boards/large/cytron_maker_nano_rp2040.jpg"  width="400"/>
 
+- **Custom made PCB expansion board**
+
+<img src="https://scontent.fbkk12-3.fna.fbcdn.net/v/t1.15752-9/312543477_864323261402550_2361715707743165031_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=ae9488&_nc_eui2=AeGju0acivL3LPg1NlmJw5rpRxLs4MrNLuBHEuzgys0u4LFIHrDd4z6OHS7dHHK75xqp_KBudy6_cpprQu0Z7R7e&_nc_ohc=j5MAHyUpj9gAX-UmlOI&_nc_ht=scontent.fbkk12-3.fna&oh=03_AdQAZk8ulJzKZ_N_6Wscwp2P_Fpbmhr20Phe64shOJHqJQ&oe=639A841E"  width="400"/>
   
+**Wire connections for our robot**
+
 ![](https://lh3.googleusercontent.com/fife/AAbDypBMpb49LbKQ5uKGLfBDmphj8Q8arFVbUlOLNF8VVuXZUzkWvl3eadt5nIXetApAGM7xuwYlJYdm-KfruJEWDW08ieDruFHPaADXrP7M5XFcIfTFgCtY1fjK248FAwB_7itTqeUqzz8pINb41MQSfPzSzkifoEEMkDSyi1I-xJGw0YoBDbfG9zFeddrwtirY0IhSuuieEyrTlboi465iIsCqC__VBJN0-RV1PZkTUowbddHRlyaFzzxbg7O-Jov3FQW7jEgIFs0O2N1yQPx4CO8iDaT0TOcZ1_F7_eemipeXO4S4E6m0oJfD1PPAM21phtAkt1eKt8yExGOCzG3ldnAfriJ87OFrO_T0MO6mjr4OHHut8QX6QlA9YFfd1lUWe9POO6wRtRw-sgNifQiTRhEBlmrgXWLpPbZ0hRhcZYgA7tPZLdf0NT4UTS3-fbQSNGOIUq_ymm8Gx5ijanCEv4of1LiZajwnGiM-FbypDGq1SEkXtfCRteScp8EkKMZRXxhc3aLF2WPfy5UFPwGRDMAdBydtPxS6vD59GdavwcT2wM0_KaMOVXi_bt4DuZG5uf1BWUjaZsJMuJi8ep2sVsNUydBfVH7GA_FGagEzsXjmVWXOPzN4mLbx8haLA8274SpNiXhLMwLUam78VUcSefPEwddz6qgcSfW9c38OUQM03DozOGG3lE8nlZVFuu34VbXgZ8JWC1oPFVYxpYdMX1uQuENEolRZLeBf9sLs4i6UjiRAc-Btg6yNIvgf6CE30h-MIxXZP_CzLSxrODLrGQ3JfhYhH6h9DbrDEqD1pzlYd6HwN8QLn2BRTaJ3SNkk-Tw5X4YlSjZ-BdXg5h5t8j5lQq5Bku3wTZZ7ko15zrIhn_KO2Khng5n6a3ZsXnzQ6rLfF4_KyWNc7id1gsK8KbAWzRpw2AFXCg7J0mUvOmT2wbMUgJLRstg56BeaUlR1xZEQj-dMW8avdAiY0MJnnNpAz7QgXOLF-1UgCnmjKFx5rBme2_4KOm02dMK3lPYj1iV_REC5tAvsLiW4PKRkK6pgRKA_UWmDZiGZTorhgJcVrHkbaeyVv7oI31QaOPY4ULHsYju2wQRvFyWVeWqs5aMI0TRtCV72LUWD1kFNwv89BkGQWG-RRzy5oaxuqUjjrEll-fXJ9713vTQudQbFeSJgInNSrL6URnIIbswHI6UHWtb6ngPBqpmc_I5vtKsSB0Nz8LublM7z5L1st0ipVBGiEdzOLmtNY2P5TjpzVuQp1BeVMTFz9hoh4Mw7k2N9WQ6MN5EnKXEihFJDayxoqXcQYlAfnT-nycc0X8_VMKgcp_BbtZDKjNSZLS-3P9kW6iJQZ-svLY-Kgk1fj6WakgY1gD_dJBEikCEsC6Xg3xRZ0m75TbM-XgiBCYJun125R1O8SiooYNDEDzBQkEclHLUtWslDrk6fyHvGTah7XUi6VBy-ZvxaCCGKSGZ5y7_hiDPAFMNbYElfjDyPHmzphBHIXzpD17WWDNppPShQ0lq32baZH7wJpz7RYXy8GUUJY3-pWqFe1nv2C6-V-6pPQYzPuNusvADoTesBf1jDZtpq0cXsnKuOVTBUcc7a3pai9Sk5pePf14ab34IXVvzUipNU9P8xd653gCYYeh9qnW9DJgX8KiSAKvAuFn17jcAXdeDG=w1920-h929)  
 
 
