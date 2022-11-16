@@ -30,7 +30,7 @@ Final round: https://youtu.be/I5dHPB5TrM8
 
 <br><br><br><br>
 
-# **Part 1 : Design process** ✨
+# **Part 1 : Robot Designs** ✨
 
 <br>
 
@@ -87,7 +87,7 @@ An incredible sensor that comes with **built-in temperature compensation**, whic
 
 <img src="https://circuitpython.org/assets/images/boards/large/cytron_maker_nano_rp2040.jpg"  width="400"/>
 
-- **Custom made PCB expansion board**
+- **Custom-made PCB expansion board** (Made specifically for the WRO Competition)
 
 <img src="https://scontent.fbkk12-3.fna.fbcdn.net/v/t1.15752-9/312543477_864323261402550_2361715707743165031_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=ae9488&_nc_eui2=AeGju0acivL3LPg1NlmJw5rpRxLs4MrNLuBHEuzgys0u4LFIHrDd4z6OHS7dHHK75xqp_KBudy6_cpprQu0Z7R7e&_nc_ohc=j5MAHyUpj9gAX-UmlOI&_nc_ht=scontent.fbkk12-3.fna&oh=03_AdQAZk8ulJzKZ_N_6Wscwp2P_Fpbmhr20Phe64shOJHqJQ&oe=639A841E"  width="400"/>
   
@@ -96,18 +96,14 @@ An incredible sensor that comes with **built-in temperature compensation**, whic
 ![](https://lh3.googleusercontent.com/fife/AAbDypBMpb49LbKQ5uKGLfBDmphj8Q8arFVbUlOLNF8VVuXZUzkWvl3eadt5nIXetApAGM7xuwYlJYdm-KfruJEWDW08ieDruFHPaADXrP7M5XFcIfTFgCtY1fjK248FAwB_7itTqeUqzz8pINb41MQSfPzSzkifoEEMkDSyi1I-xJGw0YoBDbfG9zFeddrwtirY0IhSuuieEyrTlboi465iIsCqC__VBJN0-RV1PZkTUowbddHRlyaFzzxbg7O-Jov3FQW7jEgIFs0O2N1yQPx4CO8iDaT0TOcZ1_F7_eemipeXO4S4E6m0oJfD1PPAM21phtAkt1eKt8yExGOCzG3ldnAfriJ87OFrO_T0MO6mjr4OHHut8QX6QlA9YFfd1lUWe9POO6wRtRw-sgNifQiTRhEBlmrgXWLpPbZ0hRhcZYgA7tPZLdf0NT4UTS3-fbQSNGOIUq_ymm8Gx5ijanCEv4of1LiZajwnGiM-FbypDGq1SEkXtfCRteScp8EkKMZRXxhc3aLF2WPfy5UFPwGRDMAdBydtPxS6vD59GdavwcT2wM0_KaMOVXi_bt4DuZG5uf1BWUjaZsJMuJi8ep2sVsNUydBfVH7GA_FGagEzsXjmVWXOPzN4mLbx8haLA8274SpNiXhLMwLUam78VUcSefPEwddz6qgcSfW9c38OUQM03DozOGG3lE8nlZVFuu34VbXgZ8JWC1oPFVYxpYdMX1uQuENEolRZLeBf9sLs4i6UjiRAc-Btg6yNIvgf6CE30h-MIxXZP_CzLSxrODLrGQ3JfhYhH6h9DbrDEqD1pzlYd6HwN8QLn2BRTaJ3SNkk-Tw5X4YlSjZ-BdXg5h5t8j5lQq5Bku3wTZZ7ko15zrIhn_KO2Khng5n6a3ZsXnzQ6rLfF4_KyWNc7id1gsK8KbAWzRpw2AFXCg7J0mUvOmT2wbMUgJLRstg56BeaUlR1xZEQj-dMW8avdAiY0MJnnNpAz7QgXOLF-1UgCnmjKFx5rBme2_4KOm02dMK3lPYj1iV_REC5tAvsLiW4PKRkK6pgRKA_UWmDZiGZTorhgJcVrHkbaeyVv7oI31QaOPY4ULHsYju2wQRvFyWVeWqs5aMI0TRtCV72LUWD1kFNwv89BkGQWG-RRzy5oaxuqUjjrEll-fXJ9713vTQudQbFeSJgInNSrL6URnIIbswHI6UHWtb6ngPBqpmc_I5vtKsSB0Nz8LublM7z5L1st0ipVBGiEdzOLmtNY2P5TjpzVuQp1BeVMTFz9hoh4Mw7k2N9WQ6MN5EnKXEihFJDayxoqXcQYlAfnT-nycc0X8_VMKgcp_BbtZDKjNSZLS-3P9kW6iJQZ-svLY-Kgk1fj6WakgY1gD_dJBEikCEsC6Xg3xRZ0m75TbM-XgiBCYJun125R1O8SiooYNDEDzBQkEclHLUtWslDrk6fyHvGTah7XUi6VBy-ZvxaCCGKSGZ5y7_hiDPAFMNbYElfjDyPHmzphBHIXzpD17WWDNppPShQ0lq32baZH7wJpz7RYXy8GUUJY3-pWqFe1nv2C6-V-6pPQYzPuNusvADoTesBf1jDZtpq0cXsnKuOVTBUcc7a3pai9Sk5pePf14ab34IXVvzUipNU9P8xd653gCYYeh9qnW9DJgX8KiSAKvAuFn17jcAXdeDG=w1920-h929)  
 
 
-## **Program Explaination**
-### ✨ Our Robot Features ✨
-
-- Proportional Integral Derivative (PID) controlled steering 🚗
-- 
-
-
-As for replicating our robot, we have a **step by step** guide for you.👍
+# **Part 2 : Programming**
  
-# **1. Setting up your Board and Arduino Software** 🤖
+## Setting up your Board and Arduino Software** 🤖
+<br>
 ⚠️ **Please Note that** ⚠️
 > We are using **Maker nano RP2040** from Cytron Technologies which would need a custom board library
+
+<br>
 
 For more information: [Arduino-pico Github]
 
@@ -116,160 +112,52 @@ For more information: [Arduino-pico Github]
 - **[Arduino IDE 2.0.1]** - For Programming your Maker nano RP2040
 - **[Pixymon V2]** - For displaying and configuring your Pixy
 
-# **2. Programming** 💻
-Finally we got to the interesting part ✨
-Please, download our Arduino IDE 2.0.1 program as a reference, so you can better understand our explainations.
+### **Required Libraries**
 
-### **Part one:** Setup
-This part of our program includes:
-- **Including the Arduino libraries**  
-<br>
+To be able to communicate with the sensors, many libraries need to be downloaded and included in this project. The libraries that will need to be downloaded will depend on what sensors you use. Most of these library are very crutial for completing the **Qualification rounds** and **Final rounds**.
+
+All the libraries we use can be found using the **Library Manager** in **Arduino IDE.**
 
 ```
-//Adafruit TCS34725 Color Sensor 
-<br>
+// Adafruit TCS34725 Color Sensor
 #include <ColorSensorTCS34725.h>
-<br>
-#define COLOR_SDA_PIN 12
-<br>
-#define COLOR_SCL_PIN 13
-<br>
-ColorSensorTCS34725 colorSensor(COLOR_SDA_PIN, COLOR_SCL_PIN);
-<br>
-float MeanRGB;
-<br>
-long RGBtimer;
-<br>
-char line = 'W';
-<br>
-char line_rem = 'W';
-<br>int line_offset = -10;
-int line_count = 0;
-<br>
-// PID
-<br>float err, last_err, integral;
-long PIDtimer;
-<br>
-float err1, last_err1, integral1;
-<br>
-long PIDtimer1;
-<br>
+...
+
 // Ultrasonic Sensor
-<br>
 #include <NewPing.h>
-<br>
-NewPing sonar(29, 28, 100);  //initialisation class HCSR04 (trig pin , echo pin, max distance
-<br>
-long UStimer;
-<br>
-int USread;
-<br>
-// Cytron Maker Driver Library
-<br>
-// #include "CytronMotorDriver.h"
-<br>
-// CytronMD motor1(PWM_PWM, 2, 3);
-<br>
-long motor1timer;
-<br>
-float Currentspeed;
-<br>
+...
+
 
 // Compass
-<br>
 #include <Wire.h>
-<br>
-#define CMPSADDRESS 0x60
-<br>
-byte highByte;
-<br>
-byte lowByte;
-<br>
-bool Reading = false;
-<br>
-float bearing = 0;
-<br>
-float bearingPID = 0;
-<br>
-long Ctimer;
-<br>
-float initial_deg;
-<br>
+...
+
 // Servo (Ultrasonic and Steering)
-<br>
 #include <Servo.h>
-<br>
-Servo myservo1;  // Ultrasonic
-<br>
-int servo_deg;
-<br>
-Servo myservo2;  // Steering
-<br>
+...
+
 // Neopixel LEDs
-<br>
 #include <Adafruit_NeoPixel.h>
-<br>
-#define LED_COUNT 2
-<br>
-#define LED_PIN 11
-<br>
-long LEDtimer;
-<br>
-long firstPixelHue = 0;
-<br>
-Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
-<br>
-//Pixy Camera
-<br>
+...
+
+// Pixy Camera
 // #define UART
-<br>
 #include <Pixy2UART.h>
-<br>
-Pixy2UART pixy;
-<br>
-long pixytimer;
-<br>
-int loops = 0;
-<br>
-float offset_deg = 0;
-<br>
-int nearest_index;
-<br>
-int nearest_value;
+...
 ```
 
-<br>
-- **void Set up (Move the steering wheels to face the correct position)**
-- <br>  
-void setup() {
-<br>
-  delay(1000);
-  pinMode(26, INPUT);  // Set START button pin mode
-  pinMode(28, INPUT);
-  pinMode(29, INPUT);
-  myservo1.attach(15, 600, 2400);
-  myservo2.attach(14, 600, 2400);
-  Servo1(215);
-  servo_deg = 215;
-  Servo2(135);
-  // delay(1500);
+# **2. Programming** 💻
+Finally we got to the interesting part ✨
+Please, download our Arduino program, and use it as a reference, so you can better understand our explainations.
 
-  while (analogRead(26) != 1023) {
-    // Serial.println(analogRead(26));
-    // delay(100);
-  }  // Wait until START button is pressed
-  // CompassUpdate();
-  initial_deg = bearing;  // Set initial robot direction
-  // CompassUpdate();
+### **Part one:** Setup
+- **Including Sensors libraries**  
 
-  // while (digitalRead(26) == 1)  // Wait until START button is pressed
-  //   ;
-  // initial_deg = bearing;  // Set initial robot direction
-}
 
-/* setup1() and loop1()
-  is for conputing steering degree, speed, Ultrasonic servo degree, Block Detection
-*/
+
+
+
+
 - **void Set up1 ( communication between sensors and boards)**  
 ![](https://lh3.googleusercontent.com/fife/AAbDypDoBCUtBNHInyxUW6POKqjqlr32bJ9cwkqRGxk00nqvwL63Sdkmf8O42UpXM3SDPoTTlRFafiBpHbO5Z_WzKHs8AJyCZEET8uj4ZCkqxJmPGTmIcoX5jFx5EcKlSG5jsP-ajURQZcFy0Z73ABehQz7nHC_k6axkO5spbWNKHwhl_-W-Ilod-cl0yMyE8xcfw9FEG48FeVJzmMZp4tBVOWC7oQp160lBJDhU3JWDhCgUSYrY7bic2rFSxwLWcXaOITusW495xvUbUJOtJYyhCID7bZBZGh9qJo8QgmbEAzMOkxc82HNIfQdxDZRX_ET-BPs8GNcRzzoNTv5-I-dXERi4a--hMowZuURNGpiToD551Y5pkKEM2LgCATLER89rGtqsNXA-hTF10Skce3NT6wQNx31Q09KX81Vx5qrk0rh3h-clotYQbmWl88O_a9xtrRPi49iw8sBXZkLtpTNqjLlmrCE2Tcw_99yy_lSXvepvBg0Y1WxCVT2q3cqK9YIHluQWcEpKfAJhdW1PtN_8s7MFNCXvXVYIhNfnfnaCHtPiQ6gqh9QREUdwStOLXCVdbQSR5dB-tHhA8zHqKmU9rQxQR0knBqW7JgBfXUKOqL0m4oH_OR6jhFHuET0-02Is0KUP24JkN9JnXwzx4b-YwfElrQ31ooqEhaWkrXkfk5QK9ckMsd7twdUWZLyvTkBCEYZhcJNXnROVhbp0PXUunsViZo1KkR7Q6Sqwsk8pdFBCfjaYiNtQYJUGnNCZCGpZGU5Ag3EmielZoYudvvqDa8W1dlYgnXsHV0sArkdxDD8UISmvHolG4Yn6z8dsBjehODsbURmsH46LwjiwXdrunSGYZypEspGLcneqZEZTB5HZLUYZCviR7LbzMWq0kJ_hra5LtEdWohKD9BbNo9xbFXwRN-Cb4L_ZMe7DgVqpx2RfDD5xv5GEXUTUdiL-r-S7dT3yOsVBKD9KqqfnUBblxLUFHOMrjJAiq_JgAYJSgz0nNJdDCBgLjLrdrd_pqCyEz0KswlnEueNe1wW-YtrmHR56SW-plKxdMLlMydIPRS8nuuArnKCphs1LBMgjKNLxUsY8JtIFKHVtS5_cV6fop0li7y1T8XjNkO9xt3i3iJkE5xdTuzLqfW-J6qqvPYOioAFnQtgKVncl3Fctb1sa_GnTLWGm3srhLEejVHuVSLreOipIc6EIhqGsQpLiUh_Hw3uiVV5OvCgH3aQXcOfgN1UoB_ddvDl1RSSJjx4nPBl8EYdzVvaojoKJz8BZPjY7C0TCtyQ3qnLMOMMdfewDnQCV2Y0BEKo9vHdFQ7MXprZpZMWfObC7Sc1PD0UO5XAJd4l8-IGQ3JAS79B4nAle7veDB04CATh-R56RTE-soTTNS6n7NQLb9PKyXjuaum4tJZxEwsfNXSRLjUzqaZqoL2G6g8KoyOgl2WFrtuXi1diAHEVdU30YeAzw=w1920-h929)
 
@@ -352,4 +240,5 @@ For further questions please email robloxplay41@gmail.com
    [Pixymon V2]: <https://github.com/charmedlabs/pixy/raw/master/releases/pixymon_windows/pixymon_windows-2.0.9.exe>
    [Wikipedia - Bezier Curve]: <https://en.wikipedia.org/wiki/B%C3%A9zier_curve>
    [Arduino-pico Github]: <https://github.com/earlephilhower/arduino-pico>
+   [Arduino IDE 2.0.1]: <https://www.arduino.cc/en/software>
 
