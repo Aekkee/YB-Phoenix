@@ -124,6 +124,8 @@ Please, download our Arduino IDE 2.0.1 program as a reference, so you can better
 This part of our program includes:
 - **Including the Arduino libraries**  
 <br>
+
+```
 //Adafruit TCS34725 Color Sensor 
 <br>
 #include <ColorSensorTCS34725.h>
@@ -234,10 +236,41 @@ float offset_deg = 0;
 int nearest_index;
 <br>
 int nearest_value;
+```
+
 <br>
-- **Indicate low battery warning**  
-![](https://lh3.googleusercontent.com/fife/AAbDypDL6udCDNcrJpbI75eJKVTb2XgOOONblajD7lleT2Ds3tAuYmS1voNpj4O4uy9p_68-gk1LyinkShpxCgeH9lBCz65OSZfb7PZ5uLUNbl8x__WX-aaYrAVg82AxwZOeQL1iU8d23aVrKg2Yb-WHCxjR-vWrO5vL_xrXHFoDskpBa0VOd7aL-UHq9KFK5974qCN2DmITSdDdg9jyQR75iIKmu3K7_x3z7ICrQkpJHMV3rDWYS2BpG-WZ4DzzP4daW-jgJcPJI2S6_9x7gnq7yZUMxVKf2onAAok9AD4YTK1BdbgPwj2UcqGQdr9Q4O5FH3z25jsiBbXUFuXPdsSEnPbfl-Bkx9wkqxqI1gZ9p8E6xKkx5u5p-L9eZnGuVILsSZkF3PChOwjBYMjRjAlouFnsDxfioaCHq0dikxquahf9bNzUpPWkUPmMPGKIKJA11oqEa72SzPUXJA_XdScPAuCNBhqaLUrBaTws2ats_VftKEPaLJ4pHMplJSnARkI0URy7NMIzVq3z7p7FmmbihLmv0wBM6MdrS0NrJBpEKy9Dz1gCCD5Xpg5zrRbVnkHUh2yp20yRITN8HsWsUw7l5NGk5ICQU3k-qKmT5XRq8lLdWJBuwmifAxuwRc6lw0hZjcWpyQyZM85JqhyzPfVQP3Dh9sx-5AewSUnYB3w9MlSP3beVHmU_CV3l4h6Id4gPd4nxA4t1eCd_hNqC6dsODZTHJmyABQFqk-V21m9JkZOMN5py-fwTfesYBP-q8gomks_kyDTWTVMX5BgZ0jPiHL8B2xEdU9HzfDuDUFR4WhEY8npVOXBVdMUadut9RTGCohRGVLXxAnOTB-5cLvIcRFVjww7_q6JUspyHhfxECA6181K_CFH9N30ANMmjdUBTgJMRuIxL8_LyWu-f3S53ELf8K0QpVYMo8wydUa4xFIKhxFTMQSxekO5g_VZxfynpiLGAIUNsOttHWqAnyBQQPptVW1nXUdIo6v880pAhA1_ccgQs-FG2iu3-AXb4_rgyEavBPVhlI7paQTn3mVH1dmT9nb4KJg7WYKK-z6hZK4PpoxJnAXWBlkf-lFPLqx9UGo6iYjLPA88Rkm7T0WeKZ94V-JcnxGmK5Rg1TakFRfnDmqOW2mr70KOu8_9FLgZeXHEsBKaLN_5Og8A1aZ5jVGRxCkhEvm9TDz1sucE7zGDqXDH9LNd5ZvV6Eo1Zrdu3cmBQrdfLr_J5ijMgv0siu0g2ZEm_A_0Pn6ap25gTLoC3vVgpF97lt4ikkqCpJaK97ykvWzHXsEov7X3HqxvK9_1vJ1mT0Kf5lxDYvDlVcohoKnC78_PoDBZmdts7AlyQ2oWWWcwl8ODkkfUuCZ5kcfMvOrtW7PvXJQbDC_eIPNEH9Za4AMIPY_2zuOvYs2ypswlZ5SUst1cYx9hWW1b_WbU-B7FiyEVIVgzDLTiCtYPqVFF1dGFxbibC=w1920-h929)
-- **Move the steering wheels to face the correct position**  
+- **void Set up (Move the steering wheels to face the correct position)**
+- <br>  
+void setup() {
+<br>
+  delay(1000);
+  pinMode(26, INPUT);  // Set START button pin mode
+  pinMode(28, INPUT);
+  pinMode(29, INPUT);
+  myservo1.attach(15, 600, 2400);
+  myservo2.attach(14, 600, 2400);
+  Servo1(215);
+  servo_deg = 215;
+  Servo2(135);
+  // delay(1500);
+
+  while (analogRead(26) != 1023) {
+    // Serial.println(analogRead(26));
+    // delay(100);
+  }  // Wait until START button is pressed
+  // CompassUpdate();
+  initial_deg = bearing;  // Set initial robot direction
+  // CompassUpdate();
+
+  // while (digitalRead(26) == 1)  // Wait until START button is pressed
+  //   ;
+  // initial_deg = bearing;  // Set initial robot direction
+}
+
+/* setup1() and loop1()
+  is for conputing steering degree, speed, Ultrasonic servo degree, Block Detection
+*/
+- **void Set up1 ( communication between sensors and boards)**  
 ![](https://lh3.googleusercontent.com/fife/AAbDypDoBCUtBNHInyxUW6POKqjqlr32bJ9cwkqRGxk00nqvwL63Sdkmf8O42UpXM3SDPoTTlRFafiBpHbO5Z_WzKHs8AJyCZEET8uj4ZCkqxJmPGTmIcoX5jFx5EcKlSG5jsP-ajURQZcFy0Z73ABehQz7nHC_k6axkO5spbWNKHwhl_-W-Ilod-cl0yMyE8xcfw9FEG48FeVJzmMZp4tBVOWC7oQp160lBJDhU3JWDhCgUSYrY7bic2rFSxwLWcXaOITusW495xvUbUJOtJYyhCID7bZBZGh9qJo8QgmbEAzMOkxc82HNIfQdxDZRX_ET-BPs8GNcRzzoNTv5-I-dXERi4a--hMowZuURNGpiToD551Y5pkKEM2LgCATLER89rGtqsNXA-hTF10Skce3NT6wQNx31Q09KX81Vx5qrk0rh3h-clotYQbmWl88O_a9xtrRPi49iw8sBXZkLtpTNqjLlmrCE2Tcw_99yy_lSXvepvBg0Y1WxCVT2q3cqK9YIHluQWcEpKfAJhdW1PtN_8s7MFNCXvXVYIhNfnfnaCHtPiQ6gqh9QREUdwStOLXCVdbQSR5dB-tHhA8zHqKmU9rQxQR0knBqW7JgBfXUKOqL0m4oH_OR6jhFHuET0-02Is0KUP24JkN9JnXwzx4b-YwfElrQ31ooqEhaWkrXkfk5QK9ckMsd7twdUWZLyvTkBCEYZhcJNXnROVhbp0PXUunsViZo1KkR7Q6Sqwsk8pdFBCfjaYiNtQYJUGnNCZCGpZGU5Ag3EmielZoYudvvqDa8W1dlYgnXsHV0sArkdxDD8UISmvHolG4Yn6z8dsBjehODsbURmsH46LwjiwXdrunSGYZypEspGLcneqZEZTB5HZLUYZCviR7LbzMWq0kJ_hra5LtEdWohKD9BbNo9xbFXwRN-Cb4L_ZMe7DgVqpx2RfDD5xv5GEXUTUdiL-r-S7dT3yOsVBKD9KqqfnUBblxLUFHOMrjJAiq_JgAYJSgz0nNJdDCBgLjLrdrd_pqCyEz0KswlnEueNe1wW-YtrmHR56SW-plKxdMLlMydIPRS8nuuArnKCphs1LBMgjKNLxUsY8JtIFKHVtS5_cV6fop0li7y1T8XjNkO9xt3i3iJkE5xdTuzLqfW-J6qqvPYOioAFnQtgKVncl3Fctb1sa_GnTLWGm3srhLEejVHuVSLreOipIc6EIhqGsQpLiUh_Hw3uiVV5OvCgH3aQXcOfgN1UoB_ddvDl1RSSJjx4nPBl8EYdzVvaojoKJz8BZPjY7C0TCtyQ3qnLMOMMdfewDnQCV2Y0BEKo9vHdFQ7MXprZpZMWfObC7Sc1PD0UO5XAJd4l8-IGQ3JAS79B4nAle7veDB04CATh-R56RTE-soTTNS6n7NQLb9PKyXjuaum4tJZxEwsfNXSRLjUzqaZqoL2G6g8KoyOgl2WFrtuXi1diAHEVdU30YeAzw=w1920-h929)
 
 ### **Part two:** Block detection and Robot steering
