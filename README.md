@@ -122,8 +122,119 @@ Please, download our Arduino IDE 2.0.1 program as a reference, so you can better
 
 ### **Part one:** Setup
 This part of our program includes:
-- **Determining the robot's direction**  
-![](https://lh3.googleusercontent.com/fife/AAbDypD19ichivSvKgow7SBUhvRISVjbeEnMqtdiLCfeoiHsTXGTynDmHaaABd05Rx9MwXgOLXVgILLlzxY_UNUFkmNNxtJBrDTvoTLwKNRpVTRh5O3Hdc8KCTfvFBFdEnP4Y4X-Rk9Qb6t17i2gVydy5_jlR9dVShrZ4z34ySToaLwELBXdYeMIdgfy1mTKbQ6itc-WbuZehpXWCYYyCmgTMsEz-DqF3ptZDfEptbd7vSX_vjcmrg6M1GtjDeDamxnR8G4pr31IhDp3Q6259K8lUiJLn7-5cAYCU4llGH0ZiLaSVlMW3uEvwKc0hSkx6UD0tn9nVgymhV15Sf-zZTvQcNq4vnmvL65QpLzqZiS6UtW-BB4YYcaLDwhQDmEA4r4Jc9jdIbG7F12H_XPaIrv4ioJxG7k8ay8oH6fxDC8sii9pbyMPyHxLXvnZuJcj8W1iQd2l1Kf7bvq7pCSznWmV06tH4gLqBVGK59LmuYyL5FfdJdjWKHcNf5DmfkGIY4cvi_pelj37BI6r6lMmnHlxTXLi9k7pHKoCYfuQxptZn0WkGBhcqvjycvSVFxCn4QXO-2viW622Y39mUkfMSGSCShmJrZ74eV2eYQBqy74ud64_CLgb1dx0yHKormqnXjotLe9YbUjrxSTkhtnb8G7P7UxGxRxmmLIXQ40PEptYC5PqibirlByotnoJUwPTBdQxAsqsHoTTwoMrRdF4VB47510pFf2lbRSfF8SDaZUs9JzB-SU2ba1f5GAExZXDDYLJldhYNX5Z0Yq_IsZkEbG20TYBITBZN6zR0afEoQjhxt5t022ia0vXOgAr-43dzNDdZpzhp_NCrivgD6f9LbyaUkOuCfFgTwSnIe-E7GNj09JfKRo6l9xDiVwQzLfAJqO8J7IZUNLVvvILi48EzM8MvuVSvyCNmzu5dE4zTvEPTlqSGpzIEvQI-NY6x5qIkhHF1wAB_mT1u3sROdGkvuL6ksQ5FB42khwFJ3Bfb6stogRjjjhwDKYddlBdhI7mnbazozROIkXqFnVBZQ6f0a6HbI0M73l-yEZHpwm6FYwiL5FxpzIUHwIKpA67de-KYcHksoF6jFt4PBmSpjv7EdCiZqpLuif_IsYbxZSMpLmMbEx2P44nBpfcVPE8Fu-sU67UWOYpsz1sZmNqTCdXJ8eSUzjliXzkE8L3VQauNI3sLKbiWEe4BkdQzXKs2wC5Bb9ezAclDDEJIMBm6NsWav_xQMMWjZNKEPNRpl8JG0bn5CpRBCKWaTo0BTTb1F0odSy1blkNmRASM0b-KILPCev4YnRPzaSfx1OQR4bIJHLk8Cl8ayNktRgWKpDMfZ-wr13VLSlE9l4_jm_x-otkUr8o3u-n5oo0nnTVbRlxXKplmDtBRxUN4mVSaEMNBDvNqu6Cl1YJ3R0yJYppchho8Cz7UMBpHILF2HtXIsdjC8zex2mz96ya97lf_XND=w1920-h929)
+- **Including the Arduino libraries**  
+<br>
+//Adafruit TCS34725 Color Sensor 
+<br>
+#include <ColorSensorTCS34725.h>
+<br>
+#define COLOR_SDA_PIN 12
+<br>
+#define COLOR_SCL_PIN 13
+<br>
+ColorSensorTCS34725 colorSensor(COLOR_SDA_PIN, COLOR_SCL_PIN);
+<br>
+float MeanRGB;
+<br>
+long RGBtimer;
+<br>
+char line = 'W';
+<br>
+char line_rem = 'W';
+<br>int line_offset = -10;
+int line_count = 0;
+<br>
+// PID
+<br>float err, last_err, integral;
+long PIDtimer;
+<br>
+float err1, last_err1, integral1;
+<br>
+long PIDtimer1;
+<br>
+// Ultrasonic Sensor
+<br>
+#include <NewPing.h>
+<br>
+NewPing sonar(29, 28, 100);  //initialisation class HCSR04 (trig pin , echo pin, max distance
+<br>
+long UStimer;
+<br>
+int USread;
+<br>
+// Cytron Maker Driver Library
+<br>
+// #include "CytronMotorDriver.h"
+<br>
+// CytronMD motor1(PWM_PWM, 2, 3);
+<br>
+long motor1timer;
+<br>
+float Currentspeed;
+<br>
+
+// Compass
+<br>
+#include <Wire.h>
+<br>
+#define CMPSADDRESS 0x60
+<br>
+byte highByte;
+<br>
+byte lowByte;
+<br>
+bool Reading = false;
+<br>
+float bearing = 0;
+<br>
+float bearingPID = 0;
+<br>
+long Ctimer;
+<br>
+float initial_deg;
+<br>
+// Servo (Ultrasonic and Steering)
+<br>
+#include <Servo.h>
+<br>
+Servo myservo1;  // Ultrasonic
+<br>
+int servo_deg;
+<br>
+Servo myservo2;  // Steering
+<br>
+// Neopixel LEDs
+<br>
+#include <Adafruit_NeoPixel.h>
+<br>
+#define LED_COUNT 2
+<br>
+#define LED_PIN 11
+<br>
+long LEDtimer;
+<br>
+long firstPixelHue = 0;
+<br>
+Adafruit_NeoPixel strip(LED_COUNT, LED_PIN, NEO_GRB + NEO_KHZ800);
+<br>
+//Pixy Camera
+<br>
+// #define UART
+<br>
+#include <Pixy2UART.h>
+<br>
+Pixy2UART pixy;
+<br>
+long pixytimer;
+<br>
+int loops = 0;
+<br>
+float offset_deg = 0;
+<br>
+int nearest_index;
+<br>
+int nearest_value;
+<br>
 - **Indicate low battery warning**  
 ![](https://lh3.googleusercontent.com/fife/AAbDypDL6udCDNcrJpbI75eJKVTb2XgOOONblajD7lleT2Ds3tAuYmS1voNpj4O4uy9p_68-gk1LyinkShpxCgeH9lBCz65OSZfb7PZ5uLUNbl8x__WX-aaYrAVg82AxwZOeQL1iU8d23aVrKg2Yb-WHCxjR-vWrO5vL_xrXHFoDskpBa0VOd7aL-UHq9KFK5974qCN2DmITSdDdg9jyQR75iIKmu3K7_x3z7ICrQkpJHMV3rDWYS2BpG-WZ4DzzP4daW-jgJcPJI2S6_9x7gnq7yZUMxVKf2onAAok9AD4YTK1BdbgPwj2UcqGQdr9Q4O5FH3z25jsiBbXUFuXPdsSEnPbfl-Bkx9wkqxqI1gZ9p8E6xKkx5u5p-L9eZnGuVILsSZkF3PChOwjBYMjRjAlouFnsDxfioaCHq0dikxquahf9bNzUpPWkUPmMPGKIKJA11oqEa72SzPUXJA_XdScPAuCNBhqaLUrBaTws2ats_VftKEPaLJ4pHMplJSnARkI0URy7NMIzVq3z7p7FmmbihLmv0wBM6MdrS0NrJBpEKy9Dz1gCCD5Xpg5zrRbVnkHUh2yp20yRITN8HsWsUw7l5NGk5ICQU3k-qKmT5XRq8lLdWJBuwmifAxuwRc6lw0hZjcWpyQyZM85JqhyzPfVQP3Dh9sx-5AewSUnYB3w9MlSP3beVHmU_CV3l4h6Id4gPd4nxA4t1eCd_hNqC6dsODZTHJmyABQFqk-V21m9JkZOMN5py-fwTfesYBP-q8gomks_kyDTWTVMX5BgZ0jPiHL8B2xEdU9HzfDuDUFR4WhEY8npVOXBVdMUadut9RTGCohRGVLXxAnOTB-5cLvIcRFVjww7_q6JUspyHhfxECA6181K_CFH9N30ANMmjdUBTgJMRuIxL8_LyWu-f3S53ELf8K0QpVYMo8wydUa4xFIKhxFTMQSxekO5g_VZxfynpiLGAIUNsOttHWqAnyBQQPptVW1nXUdIo6v880pAhA1_ccgQs-FG2iu3-AXb4_rgyEavBPVhlI7paQTn3mVH1dmT9nb4KJg7WYKK-z6hZK4PpoxJnAXWBlkf-lFPLqx9UGo6iYjLPA88Rkm7T0WeKZ94V-JcnxGmK5Rg1TakFRfnDmqOW2mr70KOu8_9FLgZeXHEsBKaLN_5Og8A1aZ5jVGRxCkhEvm9TDz1sucE7zGDqXDH9LNd5ZvV6Eo1Zrdu3cmBQrdfLr_J5ijMgv0siu0g2ZEm_A_0Pn6ap25gTLoC3vVgpF97lt4ikkqCpJaK97ykvWzHXsEov7X3HqxvK9_1vJ1mT0Kf5lxDYvDlVcohoKnC78_PoDBZmdts7AlyQ2oWWWcwl8ODkkfUuCZ5kcfMvOrtW7PvXJQbDC_eIPNEH9Za4AMIPY_2zuOvYs2ypswlZ5SUst1cYx9hWW1b_WbU-B7FiyEVIVgzDLTiCtYPqVFF1dGFxbibC=w1920-h929)
 - **Move the steering wheels to face the correct position**  
