@@ -1,82 +1,164 @@
-# WRO Future Engineer EV3 Program [Pheonix]
-### _By [Yothinburana School Robot Club]_
-
-[![N|Solid](https://ybrobot.club/image/YB%20Robot%20logo.png)](https://nodesource.com/products/nsolid)
-
-## Youtube Links: 
-Currently Unavaiable 
+# The Ultimate Guide to WRO Future Engineer 2022 [YB-Pheonix] ✨
 
 
+![](https://lh3.googleusercontent.com/u/0/drive-viewer/AJc5JmS-gvzix8rqHiP9ptq7tHeZygsObiNOmIOgPZ77TDPFEsBTKvNW-LatH-ngLn_0nhACZ-FHElf1pMwIivX24kCyNMjfTw=w1920-h929)
 
 
+<p align="center">
+  <img src="https://ybrobot.club/image/YB%20Robot%20logo.png" width="200"/>
+</p>
+<p align="center">
+<b>By Yothinburana School Robot Club</b>
+</p>
+<br><br><br><br>
 
-## This Github repository contains:
+## Our works (Youtube Links): 
+Qualified round: https://youtu.be/Iuq2aRa-G8A
 
-- Our robot design
+Final round: https://youtu.be/I5dHPB5TrM8
+
+
+<br>
+
+
+### This Github repository contains:
+
+- Design process
+- Crutial robot components
 - In-depth program explaination
 - Other links and references
 
-## **Our Robot Design** ✨
-### **Robot Hardware** 💻
+<br><br><br><br>
 
-- **Motor** - **Power Functions L-Motor (88003)** for **moving** our robot
-- **2 Servo** - **KSERVO-270** one for **steering** our robot and another for **rotating ultrasonic sensor**
-- **Compass or Gyro** - We use **CMPS-03** compass
-- **Camera** - We use **Pixy 2.1** for our robot because of its functionality along with the existing pre-made blocks by the developers
-- **Maker Nano RP2040** - The brain for our robot
-- **HC-SR04** - An ultrasonic sensor used to measure the distance between the robot and walls  
+# **Part 1 : Robot Designs** ✨
 
+<br>
+
+### **The Robot** 💻
+
+<br>
+
+Designing a robot is not easy. You will need to plan ahead about what you will use in your robot.
+
+For WRO Future Engineer, it is mandatory that the robot uses one driving motor and one steering 
+actuator of any type, and it is highly reccommended that your robot also have **a camera.** 📸
+
+The robot’s dimensions **must not exceed 300x200 mm and 300 mm in height.**
+
+The weight of the robot **must not exceed 1.5 kilograms.** ⚖️
+
+<br>
+
+## **Choosing components of our robot:**
+
+Remember that the best of the components is just a small part of your success. It will depend on how you use such components to your advantages.
+
+<br>
+
+- **Driving Motor** ( Power Functions L-Motor )
+
+![](https://www.lego.com/cdn/cs/set/assets/blt3289051a0e80fa54/88003.jpg?fit=bounds&format=jpg&quality=80&width=500&height=500&dpr=1)
+
+A simple and fast motor made by **LEGO**. There are many alternatives when it comes to motors for a robot, but we chose this motor because of the ease of connecting this motor to the frame of our robot. We need to make sure that our robot does not break apart while running.
+
+<br>
+
+- **Ultrasonic Sensor** ( SEN0307 ) to measure the distance between the robot and the walls
+
+<img src="https://media.digikey.com/Photos/DFRobot/SEN0307.jpg" width="400"/>
+
+An incredible sensor that comes with **built-in temperature compensation**, which can greatly reduce measurement error caused by over high/low temperature. It adopts **analog voltage output**, and provides accurate distance measurement within **2-500cm** with 1cm resolution and **±1% accuracy.**
+
+<br>
+
+- **Servo** ( GEEKSERVO-270 ) one for **steering** our robot and another for rotating **the ultrasonic sensor**
+
+<img src="https://cdn.shopify.com/s/files/1/0174/1800/products/Geekservo_1of3_37e262f7-5470-4184-8990-40ef2955fc43.jpg?v=1593189003"  width="400"/>
+
+- **Compass or Gyro** - We use **CMPS-03** compass to determine the direction of our robot.
+
+<img src="https://inex.co.th/home/wp-content/uploads/2020/07/cmps03.jpg"  width="200"/>
+
+- **Camera** - We use **Pixy 2.1** for our robot because of its functionality along with the existing pre-made library by the developers
+
+<img src="https://www.zagrosrobotics.com/images/pixy2_3.jpg"  width="200"/>
+
+- **Microcontroller Board** - **Maker Nano RP2040**, the brain for our robot
+
+<img src="https://circuitpython.org/assets/images/boards/large/cytron_maker_nano_rp2040.jpg"  width="400"/>
+
+- **Custom-made PCB expansion board** (Made specifically for the WRO Competition)
+
+<img src="https://scontent.fbkk12-3.fna.fbcdn.net/v/t1.15752-9/312543477_864323261402550_2361715707743165031_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=ae9488&_nc_eui2=AeGju0acivL3LPg1NlmJw5rpRxLs4MrNLuBHEuzgys0u4LFIHrDd4z6OHS7dHHK75xqp_KBudy6_cpprQu0Z7R7e&_nc_ohc=j5MAHyUpj9gAX-UmlOI&_nc_ht=scontent.fbkk12-3.fna&oh=03_AdQAZk8ulJzKZ_N_6Wscwp2P_Fpbmhr20Phe64shOJHqJQ&oe=639A841E"  width="400"/>
   
+**Wire connections for our robot**
+
 ![](https://lh3.googleusercontent.com/fife/AAbDypBMpb49LbKQ5uKGLfBDmphj8Q8arFVbUlOLNF8VVuXZUzkWvl3eadt5nIXetApAGM7xuwYlJYdm-KfruJEWDW08ieDruFHPaADXrP7M5XFcIfTFgCtY1fjK248FAwB_7itTqeUqzz8pINb41MQSfPzSzkifoEEMkDSyi1I-xJGw0YoBDbfG9zFeddrwtirY0IhSuuieEyrTlboi465iIsCqC__VBJN0-RV1PZkTUowbddHRlyaFzzxbg7O-Jov3FQW7jEgIFs0O2N1yQPx4CO8iDaT0TOcZ1_F7_eemipeXO4S4E6m0oJfD1PPAM21phtAkt1eKt8yExGOCzG3ldnAfriJ87OFrO_T0MO6mjr4OHHut8QX6QlA9YFfd1lUWe9POO6wRtRw-sgNifQiTRhEBlmrgXWLpPbZ0hRhcZYgA7tPZLdf0NT4UTS3-fbQSNGOIUq_ymm8Gx5ijanCEv4of1LiZajwnGiM-FbypDGq1SEkXtfCRteScp8EkKMZRXxhc3aLF2WPfy5UFPwGRDMAdBydtPxS6vD59GdavwcT2wM0_KaMOVXi_bt4DuZG5uf1BWUjaZsJMuJi8ep2sVsNUydBfVH7GA_FGagEzsXjmVWXOPzN4mLbx8haLA8274SpNiXhLMwLUam78VUcSefPEwddz6qgcSfW9c38OUQM03DozOGG3lE8nlZVFuu34VbXgZ8JWC1oPFVYxpYdMX1uQuENEolRZLeBf9sLs4i6UjiRAc-Btg6yNIvgf6CE30h-MIxXZP_CzLSxrODLrGQ3JfhYhH6h9DbrDEqD1pzlYd6HwN8QLn2BRTaJ3SNkk-Tw5X4YlSjZ-BdXg5h5t8j5lQq5Bku3wTZZ7ko15zrIhn_KO2Khng5n6a3ZsXnzQ6rLfF4_KyWNc7id1gsK8KbAWzRpw2AFXCg7J0mUvOmT2wbMUgJLRstg56BeaUlR1xZEQj-dMW8avdAiY0MJnnNpAz7QgXOLF-1UgCnmjKFx5rBme2_4KOm02dMK3lPYj1iV_REC5tAvsLiW4PKRkK6pgRKA_UWmDZiGZTorhgJcVrHkbaeyVv7oI31QaOPY4ULHsYju2wQRvFyWVeWqs5aMI0TRtCV72LUWD1kFNwv89BkGQWG-RRzy5oaxuqUjjrEll-fXJ9713vTQudQbFeSJgInNSrL6URnIIbswHI6UHWtb6ngPBqpmc_I5vtKsSB0Nz8LublM7z5L1st0ipVBGiEdzOLmtNY2P5TjpzVuQp1BeVMTFz9hoh4Mw7k2N9WQ6MN5EnKXEihFJDayxoqXcQYlAfnT-nycc0X8_VMKgcp_BbtZDKjNSZLS-3P9kW6iJQZ-svLY-Kgk1fj6WakgY1gD_dJBEikCEsC6Xg3xRZ0m75TbM-XgiBCYJun125R1O8SiooYNDEDzBQkEclHLUtWslDrk6fyHvGTah7XUi6VBy-ZvxaCCGKSGZ5y7_hiDPAFMNbYElfjDyPHmzphBHIXzpD17WWDNppPShQ0lq32baZH7wJpz7RYXy8GUUJY3-pWqFe1nv2C6-V-6pPQYzPuNusvADoTesBf1jDZtpq0cXsnKuOVTBUcc7a3pai9Sk5pePf14ab34IXVvzUipNU9P8xd653gCYYeh9qnW9DJgX8KiSAKvAuFn17jcAXdeDG=w1920-h929)  
 
 
-## **Program Explaination**
-### ✨ Our Robot Features ✨
-
-- Proportional Integral Derivative (PID) controlled steering 🚗
-- 
-
-
-As for replicating our robot, we have a **step by step** guide for you.👍
-
-⚠️ **Please note that:** ⚠️
-> **We are using LEGO MINDSTORM EV3 for this project.**
-> If you **do not** have LEGO MINDSTORM EV3 or are planning on using other microcontrollers I suggest you read this document carefully and please use our program as a guide.
+# **Part 2 : Programming**
  
-
-[![N|Solid](https://lh3.googleusercontent.com/fife/AAbDypBhkuFr3Mr7tSym3Jut6JyhcBHJF3AeRYTrl4BHX1edeHbYBvMCN0v1G-UvhWVuRADE4BjWsHMhKEY4IB6p_8vBIARpBFdUQgE92JAFT-g76NMN9wx3w2ewero_9YPyoekLbwoOPgSvEvLrtZ3xNWWh51vlBs_3P2ckAWOJFN4AUlvpW_K7TH8XOgnaZNv3FkhCBZlknTnKQqLvWLh2RDZAmHAem7U4Wh64qRqH3hTgOVcxtM1s-c_b17ZGROs8RNVEpjxYFoLvQaRns1gKDNG9LYXrcFc1iK4_poaEYyOpRomyPqjGECjXA8W0byehDixoeskLeB9Hh4F-A3rCwLlPuZpPHYYLPZke29oji1hpaY_R8niWsP0xriKtAch3QreNtxCTFwsU1kuL-8ys7ckAmN6eFDpZVdWR0pcRmLv9SzbZBL36jEG__kKGz4rqlfPuwmHKVg9B_kDfFk9FPg0ms0JJbwXnzz8rWvydPJUi_zw9RKiknrN_UtG9anOM5FGAyQnVsYDSJD6gH6H2L9SPo-fsXEUmAkTucjoRZOzBe9nt3V2rFZRHR6lCDSb5MrVaTozJ3KZZIIDHmiXSOwrvwKXVhhvsj5mX3nlyc1Jp5xXy84MFrE3pX8dsqu2RvTCpx8qodnOlh8UzCC_d8AVrY1JIzYG6tM0DvYQNsQTDu1BJWLKgkwK0kf3e2XhrCAM1JsHEm16h6MAyCzoDjU_jMD6--syRT2goCm5Rjq_P1b0JGK1Ond_wmOR7iNnFrEarRU1HgSxj3_hut4C2OEi037d7-lyKpZRUzDuSJWIi0QqBh8Rol4Qka8f_kJnh0XM9E-3OoYSmyknqsMRqgqtNFLwtL1fKsleR3khQAGx6m0dusa7i-_syu0fMk0KjbOtyw0OOGNy7hNOwjeny7irjHBZ8RNzaVmNCIeRGpE4gkj0S_LphEWkOUr_j1XAEA225X6zGqHGJNBD4fy0gfP3KnHpSbV4OgHcgioY3sUJjfBPkgYDgrfGfb7Mz0a0Ekb5DOwmCRAZWslwsu8Hz1wMSWrTft40-GI3mKBInGZGs0OcJqGJiHa41QKdTX3Oi-lOKVYdgpcTw5g5FPq3slxXM3YBdn6157TomK5HXfIbw3_QXu3l5vjeQc_C2r8S01VJlDepOkSW6LRKexWGpnhKZip3Uq3SwQwbJvhkD_UTm0voFmuo76lbw6t3DdKRptGyZERMBCTiKalKBmuqhQreB0iUgXVihkoWJoy94EbgJK7W87I3KhqVuprCXC2hBfe6YgMCMn8-ndjH9CWqukDN2HMtciAJMJ3B6HTU6ebCvunX93F4Ftx8Ynwfgzp3mq5jKChfZe71yOeJVXvtVP30c-TIzBWY_lWekyhK-lo_1X2nmUqog_urF3eaFFiSicR2qLlmF_IpcbMLCh_kzc8tlveQ9236pEw5esQeCnzmfmMXA1Oirnsd-=w1920-h929)](https://nodesource.com/products/nsolid)
-
- 
-# **1. Setting up your Board and Arduino Software** 🤖
+## Setting up your Board and Arduino Software** 🤖
+<br>
 ⚠️ **Please Note that** ⚠️
 > We are using **Maker nano RP2040** from Cytron Technologies which would need a custom board library
+
+<br>
 
 For more information: [Arduino-pico Github]
 
 ### **Required Programs**
 
-- **[EV3 Education Lab]** - For Programming your EV3
+- **[Arduino IDE 2.0.1]** - For Programming your Maker nano RP2040
 - **[Pixymon V2]** - For displaying and configuring your Pixy
 
-### **Custom blocks used in EV3 Education Lab**
+### **Required Libraries**
 
-You need to download these custom made programming blocks to open our program files
+To be able to communicate with the sensors, many libraries need to be downloaded and included in this project. The libraries that will need to be downloaded will depend on what sensors you use. Most of these library are very crutial for completing the **Qualification rounds** and **Final rounds**.
 
-- **[OFDL-EV3_Blocks-Collections]** - Add more useful blocks to programming environment
-- **[Pixy Blocks and Examples]** - Pixy blocks for your EV3 software with example files
+All the libraries we use can be found using the **Library Manager** in **Arduino IDE.**
 
+```
+// Adafruit TCS34725 Color Sensor
+#include <ColorSensorTCS34725.h>
+...
+
+// Ultrasonic Sensor
+#include <NewPing.h>
+...
+
+
+// Compass
+#include <Wire.h>
+...
+
+// Servo (Ultrasonic and Steering)
+#include <Servo.h>
+...
+
+// Neopixel LEDs
+#include <Adafruit_NeoPixel.h>
+...
+
+// Pixy Camera
+// #define UART
+#include <Pixy2UART.h>
+...
+```
 
 # **2. Programming** 💻
 Finally we got to the interesting part ✨
-Please, download our EV3 program as a reference, so you can better understand our explainations.
+Please, download our Arduino program, and use it as a reference, so you can better understand our explainations.
 
 ### **Part one:** Setup
-This part of our program includes:
-- **Determining the robot's direction**  
-![](https://lh3.googleusercontent.com/fife/AAbDypD19ichivSvKgow7SBUhvRISVjbeEnMqtdiLCfeoiHsTXGTynDmHaaABd05Rx9MwXgOLXVgILLlzxY_UNUFkmNNxtJBrDTvoTLwKNRpVTRh5O3Hdc8KCTfvFBFdEnP4Y4X-Rk9Qb6t17i2gVydy5_jlR9dVShrZ4z34ySToaLwELBXdYeMIdgfy1mTKbQ6itc-WbuZehpXWCYYyCmgTMsEz-DqF3ptZDfEptbd7vSX_vjcmrg6M1GtjDeDamxnR8G4pr31IhDp3Q6259K8lUiJLn7-5cAYCU4llGH0ZiLaSVlMW3uEvwKc0hSkx6UD0tn9nVgymhV15Sf-zZTvQcNq4vnmvL65QpLzqZiS6UtW-BB4YYcaLDwhQDmEA4r4Jc9jdIbG7F12H_XPaIrv4ioJxG7k8ay8oH6fxDC8sii9pbyMPyHxLXvnZuJcj8W1iQd2l1Kf7bvq7pCSznWmV06tH4gLqBVGK59LmuYyL5FfdJdjWKHcNf5DmfkGIY4cvi_pelj37BI6r6lMmnHlxTXLi9k7pHKoCYfuQxptZn0WkGBhcqvjycvSVFxCn4QXO-2viW622Y39mUkfMSGSCShmJrZ74eV2eYQBqy74ud64_CLgb1dx0yHKormqnXjotLe9YbUjrxSTkhtnb8G7P7UxGxRxmmLIXQ40PEptYC5PqibirlByotnoJUwPTBdQxAsqsHoTTwoMrRdF4VB47510pFf2lbRSfF8SDaZUs9JzB-SU2ba1f5GAExZXDDYLJldhYNX5Z0Yq_IsZkEbG20TYBITBZN6zR0afEoQjhxt5t022ia0vXOgAr-43dzNDdZpzhp_NCrivgD6f9LbyaUkOuCfFgTwSnIe-E7GNj09JfKRo6l9xDiVwQzLfAJqO8J7IZUNLVvvILi48EzM8MvuVSvyCNmzu5dE4zTvEPTlqSGpzIEvQI-NY6x5qIkhHF1wAB_mT1u3sROdGkvuL6ksQ5FB42khwFJ3Bfb6stogRjjjhwDKYddlBdhI7mnbazozROIkXqFnVBZQ6f0a6HbI0M73l-yEZHpwm6FYwiL5FxpzIUHwIKpA67de-KYcHksoF6jFt4PBmSpjv7EdCiZqpLuif_IsYbxZSMpLmMbEx2P44nBpfcVPE8Fu-sU67UWOYpsz1sZmNqTCdXJ8eSUzjliXzkE8L3VQauNI3sLKbiWEe4BkdQzXKs2wC5Bb9ezAclDDEJIMBm6NsWav_xQMMWjZNKEPNRpl8JG0bn5CpRBCKWaTo0BTTb1F0odSy1blkNmRASM0b-KILPCev4YnRPzaSfx1OQR4bIJHLk8Cl8ayNktRgWKpDMfZ-wr13VLSlE9l4_jm_x-otkUr8o3u-n5oo0nnTVbRlxXKplmDtBRxUN4mVSaEMNBDvNqu6Cl1YJ3R0yJYppchho8Cz7UMBpHILF2HtXIsdjC8zex2mz96ya97lf_XND=w1920-h929)
-- **Indicate low battery warning**  
-![](https://lh3.googleusercontent.com/fife/AAbDypDL6udCDNcrJpbI75eJKVTb2XgOOONblajD7lleT2Ds3tAuYmS1voNpj4O4uy9p_68-gk1LyinkShpxCgeH9lBCz65OSZfb7PZ5uLUNbl8x__WX-aaYrAVg82AxwZOeQL1iU8d23aVrKg2Yb-WHCxjR-vWrO5vL_xrXHFoDskpBa0VOd7aL-UHq9KFK5974qCN2DmITSdDdg9jyQR75iIKmu3K7_x3z7ICrQkpJHMV3rDWYS2BpG-WZ4DzzP4daW-jgJcPJI2S6_9x7gnq7yZUMxVKf2onAAok9AD4YTK1BdbgPwj2UcqGQdr9Q4O5FH3z25jsiBbXUFuXPdsSEnPbfl-Bkx9wkqxqI1gZ9p8E6xKkx5u5p-L9eZnGuVILsSZkF3PChOwjBYMjRjAlouFnsDxfioaCHq0dikxquahf9bNzUpPWkUPmMPGKIKJA11oqEa72SzPUXJA_XdScPAuCNBhqaLUrBaTws2ats_VftKEPaLJ4pHMplJSnARkI0URy7NMIzVq3z7p7FmmbihLmv0wBM6MdrS0NrJBpEKy9Dz1gCCD5Xpg5zrRbVnkHUh2yp20yRITN8HsWsUw7l5NGk5ICQU3k-qKmT5XRq8lLdWJBuwmifAxuwRc6lw0hZjcWpyQyZM85JqhyzPfVQP3Dh9sx-5AewSUnYB3w9MlSP3beVHmU_CV3l4h6Id4gPd4nxA4t1eCd_hNqC6dsODZTHJmyABQFqk-V21m9JkZOMN5py-fwTfesYBP-q8gomks_kyDTWTVMX5BgZ0jPiHL8B2xEdU9HzfDuDUFR4WhEY8npVOXBVdMUadut9RTGCohRGVLXxAnOTB-5cLvIcRFVjww7_q6JUspyHhfxECA6181K_CFH9N30ANMmjdUBTgJMRuIxL8_LyWu-f3S53ELf8K0QpVYMo8wydUa4xFIKhxFTMQSxekO5g_VZxfynpiLGAIUNsOttHWqAnyBQQPptVW1nXUdIo6v880pAhA1_ccgQs-FG2iu3-AXb4_rgyEavBPVhlI7paQTn3mVH1dmT9nb4KJg7WYKK-z6hZK4PpoxJnAXWBlkf-lFPLqx9UGo6iYjLPA88Rkm7T0WeKZ94V-JcnxGmK5Rg1TakFRfnDmqOW2mr70KOu8_9FLgZeXHEsBKaLN_5Og8A1aZ5jVGRxCkhEvm9TDz1sucE7zGDqXDH9LNd5ZvV6Eo1Zrdu3cmBQrdfLr_J5ijMgv0siu0g2ZEm_A_0Pn6ap25gTLoC3vVgpF97lt4ikkqCpJaK97ykvWzHXsEov7X3HqxvK9_1vJ1mT0Kf5lxDYvDlVcohoKnC78_PoDBZmdts7AlyQ2oWWWcwl8ODkkfUuCZ5kcfMvOrtW7PvXJQbDC_eIPNEH9Za4AMIPY_2zuOvYs2ypswlZ5SUst1cYx9hWW1b_WbU-B7FiyEVIVgzDLTiCtYPqVFF1dGFxbibC=w1920-h929)
-- **Move the steering wheels to face the correct position**  
+- **Including Sensors libraries**  
+
+
+
+
+
+
+- **void Set up1 ( communication between sensors and boards)**  
 ![](https://lh3.googleusercontent.com/fife/AAbDypDoBCUtBNHInyxUW6POKqjqlr32bJ9cwkqRGxk00nqvwL63Sdkmf8O42UpXM3SDPoTTlRFafiBpHbO5Z_WzKHs8AJyCZEET8uj4ZCkqxJmPGTmIcoX5jFx5EcKlSG5jsP-ajURQZcFy0Z73ABehQz7nHC_k6axkO5spbWNKHwhl_-W-Ilod-cl0yMyE8xcfw9FEG48FeVJzmMZp4tBVOWC7oQp160lBJDhU3JWDhCgUSYrY7bic2rFSxwLWcXaOITusW495xvUbUJOtJYyhCID7bZBZGh9qJo8QgmbEAzMOkxc82HNIfQdxDZRX_ET-BPs8GNcRzzoNTv5-I-dXERi4a--hMowZuURNGpiToD551Y5pkKEM2LgCATLER89rGtqsNXA-hTF10Skce3NT6wQNx31Q09KX81Vx5qrk0rh3h-clotYQbmWl88O_a9xtrRPi49iw8sBXZkLtpTNqjLlmrCE2Tcw_99yy_lSXvepvBg0Y1WxCVT2q3cqK9YIHluQWcEpKfAJhdW1PtN_8s7MFNCXvXVYIhNfnfnaCHtPiQ6gqh9QREUdwStOLXCVdbQSR5dB-tHhA8zHqKmU9rQxQR0knBqW7JgBfXUKOqL0m4oH_OR6jhFHuET0-02Is0KUP24JkN9JnXwzx4b-YwfElrQ31ooqEhaWkrXkfk5QK9ckMsd7twdUWZLyvTkBCEYZhcJNXnROVhbp0PXUunsViZo1KkR7Q6Sqwsk8pdFBCfjaYiNtQYJUGnNCZCGpZGU5Ag3EmielZoYudvvqDa8W1dlYgnXsHV0sArkdxDD8UISmvHolG4Yn6z8dsBjehODsbURmsH46LwjiwXdrunSGYZypEspGLcneqZEZTB5HZLUYZCviR7LbzMWq0kJ_hra5LtEdWohKD9BbNo9xbFXwRN-Cb4L_ZMe7DgVqpx2RfDD5xv5GEXUTUdiL-r-S7dT3yOsVBKD9KqqfnUBblxLUFHOMrjJAiq_JgAYJSgz0nNJdDCBgLjLrdrd_pqCyEz0KswlnEueNe1wW-YtrmHR56SW-plKxdMLlMydIPRS8nuuArnKCphs1LBMgjKNLxUsY8JtIFKHVtS5_cV6fop0li7y1T8XjNkO9xt3i3iJkE5xdTuzLqfW-J6qqvPYOioAFnQtgKVncl3Fctb1sa_GnTLWGm3srhLEejVHuVSLreOipIc6EIhqGsQpLiUh_Hw3uiVV5OvCgH3aQXcOfgN1UoB_ddvDl1RSSJjx4nPBl8EYdzVvaojoKJz8BZPjY7C0TCtyQ3qnLMOMMdfewDnQCV2Y0BEKo9vHdFQ7MXprZpZMWfObC7Sc1PD0UO5XAJd4l8-IGQ3JAS79B4nAle7veDB04CATh-R56RTE-soTTNS6n7NQLb9PKyXjuaum4tJZxEwsfNXSRLjUzqaZqoL2G6g8KoyOgl2WFrtuXi1diAHEVdU30YeAzw=w1920-h929)
 
 ### **Part two:** Block detection and Robot steering
@@ -158,4 +240,5 @@ For further questions please email robloxplay41@gmail.com
    [Pixymon V2]: <https://github.com/charmedlabs/pixy/raw/master/releases/pixymon_windows/pixymon_windows-2.0.9.exe>
    [Wikipedia - Bezier Curve]: <https://en.wikipedia.org/wiki/B%C3%A9zier_curve>
    [Arduino-pico Github]: <https://github.com/earlephilhower/arduino-pico>
+   [Arduino IDE 2.0.1]: <https://www.arduino.cc/en/software>
 
