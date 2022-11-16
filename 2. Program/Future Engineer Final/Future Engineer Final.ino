@@ -15,7 +15,7 @@ float MeanRGB;
 long RGBtimer;
 char line = 'W';
 char line_rem = 'W';
-int line_offset = -10;
+int line_offset = 10;
 int line_count = 0;
 
 // PID
@@ -91,7 +91,7 @@ void setup() {
   myservo2.attach(14, 600, 2400);
   Servo1(215);
   servo_deg = 215;
-  Servo2(135);
+  Servo2(0);
   // delay(1500);
 
   while (analogRead(26) != 1023) {
@@ -196,18 +196,18 @@ void loop() {
       }
       if (pixy.ccc.blocks[nearest_index].m_signature == 1) {
         servo_deg = 215;
-        line_offset = -10;
+        line_offset = 10;
         // Serial.println(float(atan2(1000 * 2 / pixy.ccc.blocks[nearest_index].m_height * tan(float(map(pixy.ccc.blocks[nearest_index].m_x, 0, 316, -30, 30) + Wrap(bearingPID - initial_deg, -180, 179)) / 180 * PI), 1000 * 2 / pixy.ccc.blocks[nearest_index].m_height)) * 180 / PI);
-        Blocks((float(atan2(1000 * 2 / pixy.ccc.blocks[nearest_index].m_height * tan(float(map(pixy.ccc.blocks[nearest_index].m_x, 0, 316, -30, 30) + Wrap(bearingPID - initial_deg, -180, 179)) / 180 * PI) - 20, 1000 * 2 / pixy.ccc.blocks[nearest_index].m_height - 2)) * 180 / PI), 15);
+        Blocks((float(atan2(1000 * 2 / pixy.ccc.blocks[nearest_index].m_height * tan(float(map(pixy.ccc.blocks[nearest_index].m_x, 0, 316, -30, 30) + Wrap(bearingPID - initial_deg, -180, 179)) / 180 * PI) - 20, 1000 * 2 / pixy.ccc.blocks[nearest_index].m_height - 10)) * 180 / PI), 15);
         if (offset_deg > 0) {
           Blocks(0, 35);
         }
       } else {
         servo_deg = 55;
-        line_offset = 10;
+        line_offset = -10;
         // Serial.println(float(atan2(1000 * 2 / pixy.ccc.blocks[nearest_index].m_height * tan(float(map(pixy.ccc.blocks[nearest_index].m_x, 0, 316, -30, 30) + Wrap(bearingPID - initial_deg, -180, 179)) / 180 * PI), 1000 * 2 / pixy.ccc.blocks[nearest_index].m_height)) * 180 / PI);
         // offset_deg = *0.25 + offset_deg;
-        Blocks((float(atan2(1000 * 2 / pixy.ccc.blocks[nearest_index].m_height * tan(float(map(pixy.ccc.blocks[nearest_index].m_x, 0, 316, -30, 30) + Wrap(bearingPID - initial_deg, -180, 179)) / 180 * PI) + 20, 1000 * 2 / pixy.ccc.blocks[nearest_index].m_height - 2)) * 180 / PI), 15);
+        Blocks((float(atan2(1000 * 2 / pixy.ccc.blocks[nearest_index].m_height * tan(float(map(pixy.ccc.blocks[nearest_index].m_x, 0, 316, -30, 30) + Wrap(bearingPID - initial_deg, -180, 179)) / 180 * PI) + 20, 1000 * 2 / pixy.ccc.blocks[nearest_index].m_height - 10)) * 180 / PI), 15);
         if (offset_deg < 0) {
           Blocks(0, 35);
         }
@@ -219,17 +219,14 @@ void loop() {
 
 
     UltraSonicUpdate();
-    // analogWrite(2, 4095);
-    // analogWrite(3, 0);
-    // analogWrite(8, map(abs(Wrap((bearingPID - initial_deg), -180, 179)), 90, 0, 1500, 2800));
 
 
-    motor1(constrain(map(abs(Wrap((bearingPID - initial_deg + offset_deg), -180, 179)), 25, 0, 10, 25), 10, 25), 40);
+    motor1(constrain(map(abs(Wrap((bearingPID - initial_deg), -180, 179)), 25, 0, 10, 15), 10, 25), 40);
 
 
     if (line == 'R' && pixy.ccc.numBlocks == 0) {
       initial_deg = initial_deg + 90;
-      line_offset = 10;
+      line_offset = -10;
       line = 'W';
       line_rem = 'R';
       servo_deg = 55;
@@ -237,14 +234,18 @@ void loop() {
       Serial.println("REDD");
     } else if (line == 'B' && pixy.ccc.numBlocks == 0) {
       initial_deg = initial_deg - 90;
-      line_offset = -10;
+      line_offset = 10;
       line = 'W';
       line_rem = 'B';
       servo_deg = 215;
     }
 
 
-    Servo2(Wrap((Wrap(bearingPID - initial_deg, -180, 179) * mapf(abs(Wrap(bearingPID - initial_deg + offset_deg * constrain(mapf(USread, 20, 40, 0, 1), 0, 1), -180, 179)), 0, 90, 0.3, 1.4) - line_offset * constrain(mapf(USread, 20, 65, -1, 1), -1, 0.2) * mapf(abs(Wrap(bearingPID - initial_deg, -180, 179)), 0, 90, 0.8, 0.5)) * -1 * mapf(abs(Currentspeed), 10, 30, 1, 0.3) + offset_deg * constrain(mapf(USread, 20, 40, 0, 1), 0, 1), -180, 179)  + 135);
+    // Servo2(Wrap((Wrap(bearingPID - initial_deg, -180, 179) * mapf(abs(Wrap(bearingPID - initial_deg + offset_deg * constrain(mapf(USread, 20, 40, 0, 1), 0, 1), -180, 179)), 0, 90, 0.3, 1.4) - line_offset * constrain(mapf(USread, 20, 65, -1, 1), -1, 0.2) * mapf(abs(Wrap(bearingPID - initial_deg, -180, 179)), 0, 90, 0.8, 0.5)) * -1 * mapf(abs(Currentspeed), 10, 30, 1, 0.3) + offset_deg * constrain(mapf(USread, 20, 40, 0, 1), 0, 1), -180, 179)  + 135);
+
+    Servo2(Wrap(Wrap((bearingPID - initial_deg), -180, 179) * mapf(abs(Wrap((bearingPID - initial_deg), -180, 179)), 0, 45, 0.5, 1) * -1 + offset_deg * constrain(mapf(USread, 25, 40, 0, 1), 0, 1) * 0.75 - line_offset * constrain(mapf(USread, 25, 40, 0, 1), -5, 0.2), -180, 179));
+
+    // Serial.println(constrain(mapf(USread, 25, 40, 0, 1), -5, 0.2));
 
     Servo1(servo_deg + Wrap((bearing - initial_deg), -180, 179));
   }
@@ -263,7 +264,7 @@ void loop() {
 void loop1() {
 
   CompassUpdate();
-  RGBUpdate(true);
+  // RGBUpdate(true);
 
   rainbow(10);
 }
@@ -285,14 +286,14 @@ void Servo1(int theta) {
 }
 
 void Servo2(int theta) {
-  theta = constrain(theta, 90, 180) + map(theta, 0, 360, 0, 10);  // Limit servo degree
-  theta = int(map(theta, 0, 270, 0, 180));                        // Map degree to correct the position
+  theta = constrain(theta + 135, 90, 180);  // Limit servo degree
+  theta = int(map(theta, 0, 270, 0, 180));  // Map degree to correct the position
   myservo2.write(theta);
 }
 
 void UltraSonicUpdate() {
 
-  USread = (map(analogRead(29), 0, 1023, 0, 500) - USread) * 0.2 + USread;
+  USread = map(analogRead(29), 0, 1023, 0, 500);
   // Serial.println(USread);
 }
 
