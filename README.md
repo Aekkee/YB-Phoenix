@@ -24,7 +24,7 @@ Final round: https://youtu.be/I5dHPB5TrM8
 ### This Github repository contains:
 
 - Design process
-- In-depth program explaination
+- Program explaination
 
 <br><br><br><br>
 
