@@ -114,6 +114,8 @@ For more information: [Arduino-pico Github]
 - **[Arduino IDE 2.0.1]** - For Programming your Maker nano RP2040
 - **[Pixymon V2]** - For displaying and configuring your Pixy
 
+<br>
+
 ### **Required Libraries**
 
 To be able to communicate with the sensors, many libraries need to be downloaded and included in this project. The libraries that will need to be downloaded will depend on what sensors you use. Most of these library are very crutial for completing the **Qualification rounds** and **Final rounds**.
@@ -159,9 +161,63 @@ To run our program in the first core, we must use ```setup()``` and ```loop()```
 
 And to run our program in the second core, we must use ```setup1()``` and ```loop1()```.
 
+<br>
+
 ### Setup()
 
 For the ```setup()``` and ```setup1()```, each of them is mostly the same in the Qualification Round program and the Final Round program. The difference takes place in the ```loop()``` and ```loop1()``` as they contain program that the robot will follow after pressing the **Start Button.**
+
+```
+void setup() {
+  delay(1000);
+  pinMode(26, INPUT);  // Set START button pin mode
+  pinMode(28, INPUT);
+  pinMode(29, INPUT);
+  myservo1.attach(15, 600, 2400); // Atach Servos
+  myservo2.attach(14, 600, 2400);
+  ...
+
+  while (analogRead(26) != 1023);  // Wait until START button is pressed
+  initial_deg = bearing;  // Set initial heading of the robot
+```
+
+<br>
+
+```
+void setup1() {
+
+  strip.begin(); // Neopixels Setup
+  strip.show();
+  strip.setBrightness(30);
+  
+  Wire1.setSDA(6);     // Set SDA pin for I2C communication
+  Wire1.setSCL(7);     // Set SCL pin for I2C communication
+  Wire1.begin();       // Begin Communication with CMPS-03 compass
+  Serial.begin(57600);  // Begin Serial communication for debugging
+
+  ...
+
+  colorSensor.setWaitTime(0);         //Set Wait Time for Color sensor
+  colorSensor.setIntegrationTime(5);  //Set Wait Time for Color sensor
+  colorSensor.setGain(CS_GAIN_16);    //Set Wait Time for Color sensor
+  if (!colorSensor.begin()) {         
+    Serial.println("RGB ERROR");      //Begin communication with Color sensor
+    while (true)
+      ;
+  }
+
+  Serial1.setRX(17);                  // Set Rx pin for the UART communication
+  Serial1.setTX(16);                  // Set Tx pin for the UART communication
+
+  Serial.print("Starting...\n");
+  // Serail1
+  pixy.init();                        // Begin communication with the Pixy camera
+
+  while (analogRead(26) != 1023) {
+    ...                               // Wait until START button is pressed
+  }
+}
+```
 
 <br><br>
 
